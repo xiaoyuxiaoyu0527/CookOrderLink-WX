@@ -1,0 +1,268 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778763043736,
+  "projectRoot": "D:\\code\\CookOrderLink",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "JavaScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "jsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": "npm test",
+    "lintCommand": "npm run lint",
+    "devCommand": null,
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "lint": "eslint --cache --fix --ext .js",
+      "check": "node config/eslintCheck.js",
+      "prepare": "husky install",
+      "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "components",
+      "pages"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "common": {
+      "path": "common",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778763043708,
+      "keyFiles": [
+        "updateManager.js"
+      ]
+    },
+    "components": {
+      "path": "components",
+      "purpose": "UI components",
+      "fileCount": 1,
+      "lastAccessed": 1778763043715,
+      "keyFiles": []
+    },
+    "config": {
+      "path": "config",
+      "purpose": "Configuration files",
+      "fileCount": 2,
+      "lastAccessed": 1778763043715,
+      "keyFiles": [
+        "eslintCheck.js",
+        "index.js"
+      ]
+    },
+    "custom-tab-bar": {
+      "path": "custom-tab-bar",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1778763043716,
+      "keyFiles": [
+        "data.js",
+        "index.js",
+        "index.json",
+        "index.wxml",
+        "index.wxss"
+      ]
+    },
+    "miniprogram_npm": {
+      "path": "miniprogram_npm",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778763043716,
+      "keyFiles": []
+    },
+    "model": {
+      "path": "model",
+      "purpose": null,
+      "fileCount": 16,
+      "lastAccessed": 1778763043717,
+      "keyFiles": [
+        "activities.js",
+        "activity.js",
+        "address.js",
+        "cart.js",
+        "category.js"
+      ]
+    },
+    "pages": {
+      "path": "pages",
+      "purpose": "Page components",
+      "fileCount": 1,
+      "lastAccessed": 1778763043718,
+      "keyFiles": []
+    },
+    "services": {
+      "path": "services",
+      "purpose": "Business logic services",
+      "fileCount": 1,
+      "lastAccessed": 1778763043718,
+      "keyFiles": []
+    },
+    "style": {
+      "path": "style",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1778763043718,
+      "keyFiles": [
+        "cart-group.wxss",
+        "global.wxss",
+        "goodsList.wxss",
+        "iconfont.wxss",
+        "theme.wxss"
+      ]
+    },
+    "utils": {
+      "path": "utils",
+      "purpose": "Utility functions",
+      "fileCount": 4,
+      "lastAccessed": 1778763043719,
+      "keyFiles": [
+        "addressParse.js",
+        "getPermission.js",
+        "mock.js",
+        "util.js"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "docs\\superpowers\\specs\\2026-05-14-cook-order-link-design.md",
+      "accessCount": 5,
+      "lastAccessed": 1778770435852,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 4,
+      "lastAccessed": 1778771534810,
+      "type": "directory"
+    },
+    {
+      "path": "docs\\superpowers\\specs\\plan.md",
+      "accessCount": 2,
+      "lastAccessed": 1778769682813,
+      "type": "file"
+    },
+    {
+      "path": "app.js",
+      "accessCount": 2,
+      "lastAccessed": 1778771522768,
+      "type": "file"
+    },
+    {
+      "path": "app.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771523022,
+      "type": "file"
+    },
+    {
+      "path": "project.config.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771523092,
+      "type": "file"
+    },
+    {
+      "path": "app.wxss",
+      "accessCount": 2,
+      "lastAccessed": 1778771523254,
+      "type": "file"
+    },
+    {
+      "path": "DESIGN.md",
+      "accessCount": 1,
+      "lastAccessed": 1778763697616,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1778763844771,
+      "type": "file"
+    },
+    {
+      "path": "mock.md",
+      "accessCount": 1,
+      "lastAccessed": 1778763844815,
+      "type": "file"
+    },
+    {
+      "path": "docs\\superpowers\\specs",
+      "accessCount": 1,
+      "lastAccessed": 1778769826424,
+      "type": "directory"
+    },
+    {
+      "path": "docs\\superpowers\\plans",
+      "accessCount": 1,
+      "lastAccessed": 1778770771485,
+      "type": "directory"
+    },
+    {
+      "path": "docs\\superpowers\\plans\\2026-05-14-cook-order-link.md",
+      "accessCount": 1,
+      "lastAccessed": 1778771048632,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\MSI-NB\\.claude\\plugins\\cache\\claude-plugins-official\\superpowers\\5.1.0\\skills\\subagent-driven-development\\code-quality-reviewer-prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1778771160526,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\MSI-NB\\.claude\\plugins\\cache\\claude-plugins-official\\superpowers\\5.1.0\\skills\\subagent-driven-development\\spec-reviewer-prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1778771160686,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\MSI-NB\\.claude\\plugins\\cache\\claude-plugins-official\\superpowers\\5.1.0\\skills\\subagent-driven-development\\implementer-prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1778771160752,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram",
+      "accessCount": 1,
+      "lastAccessed": 1778771502920,
+      "type": "directory"
+    },
+    {
+      "path": "miniprogram\\pages",
+      "accessCount": 1,
+      "lastAccessed": 1778771573589,
+      "type": "directory"
+    }
+  ],
+  "userDirectives": []
+}

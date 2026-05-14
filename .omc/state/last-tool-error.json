@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd D:/code/CookOrderLink && git commit -m \\\"$(cat <<'EOF'\\nfeat: project scaffolding with tabBar and Apple Design System tokens\\nEOF\\n)\\\"\"}",
+  "error": "Exit code 128\nAuthor identity unknown\n\n*** Please tell me who you are.\n\nRun\n\n  git config --global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: unable to auto-detect email address (got 'MSI-NB@MSI.(none)')",
+  "timestamp": "2026-05-14T15:11:13.799Z",
+  "retry_count": 1
+}
