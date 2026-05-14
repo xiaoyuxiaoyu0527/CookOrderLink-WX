@@ -31,11 +31,11 @@
   </view>
 
   <!-- Join Modal -->
-  <view wx:if="{{showJoinModal}}" class="modal-mask" bindtap="onCloseModal">
-    <view class="modal-content" catchtap="">
+  <view wx:if="{{showJoinModal}}" class="modal-mask" catchtap="onCloseModal">
+    <view class="modal-content" catchtap="noop">
       <view class="modal-title">加入家庭组</view>
-      <input class="modal-input" placeholder="请输入6位邀请码" bindinput="onJoinCodeInput" maxlength="6" />
-      <button class="btn-primary" bindtap="onJoinFamily">加入</button>
+      <input class="modal-input" placeholder="请输入6位邀请码" bindinput="onJoinCodeInput" bindfocus="onInputFocus" maxlength="6" />
+      <button class="btn-primary" catchtap="onJoinFamily">加入</button>
     </view>
   </view>
 </view>

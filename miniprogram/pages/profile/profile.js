@@ -67,6 +67,12 @@ Page({
     this.setData({ showJoinModal: false });
   },
 
+  noop() {},
+
+  onInputFocus() {
+    // Prevent modal from closing when input is focused
+  },
+
   onCopyInviteCode() {
     wx.setClipboardData({
       data: this.data.inviteCode,
