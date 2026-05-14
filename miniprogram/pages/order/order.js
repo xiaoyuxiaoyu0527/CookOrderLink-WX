@@ -99,7 +99,13 @@ Page({
       return;
     }
 
-    wx.showToast({ title: '点菜成功', icon: 'success' });
-    this.setData({ selectedIds: [], selectedRecipes: {}, totalCount: 0, totalMinutes: 0 });
+    // Request subscribe message authorization for order notifications
+    wx.requestSubscribeMessage({
+      tmplIds: ['zIoRVqR89IsQSbh2D27EtprZ8TUd-q_tDXY7gbD03r4'],
+      complete: () => {
+        wx.showToast({ title: '点菜成功', icon: 'success' });
+        this.setData({ selectedIds: [], selectedRecipes: {}, totalCount: 0, totalMinutes: 0 });
+      },
+    });
   },
 });

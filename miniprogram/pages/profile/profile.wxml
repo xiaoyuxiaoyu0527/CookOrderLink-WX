@@ -22,6 +22,11 @@
       <view class="role-text">{{userInfo.role === 'husband' ? '烹饪者' : '点菜者'}}</view>
     </view>
 
+    <view class="card card-row">
+      <view class="card-label">过期食材提醒</view>
+      <switch checked="{{userInfo.subscribeExpireReminder}}" bindchange="onToggleReminder" color="#0066cc" />
+    </view>
+
     <button class="btn-secondary" bindtap="onSeedRecipes">添加示例菜谱</button>
   </view>
 

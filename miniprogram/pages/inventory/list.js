@@ -16,6 +16,10 @@ Page({
   async onLoad() {
     this.user = await getCurrentUser();
     await this.loadInventory();
+    // Request subscribe message authorization for expiry reminders
+    wx.requestSubscribeMessage({
+      tmplIds: ['Rk2sodg0GmD20fL0Ve30oJ3HI8m-_qjH36zqJs_rj9g'],
+    });
   },
 
   async onShow() {

@@ -74,6 +74,31 @@ Page({
     });
   },
 
+  async onToggleReminder(e) {
+    const enabled = e.detail.value;
+    if (enabled) {
+      wx.requestSubscribeMessage({
+        tmplIds: ['Rk2sodg0GmD20fL0Ve30oJ3HI8m-_qjH36zqJs_rj9g'],
+        success: async () => {
+          await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+            data: { subscribeExpireReminder: true },
+          });
+          this.setData({ 'userInfo.subscribeExpireReminder': true });
+          wx.showToast({ title: '已开启提醒', icon: 'success' });
+        },
+        fail: () => {
+          this.setData({ 'userInfo.subscribeExpireReminder': false });
+        },
+      });
+    } else {
+      await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+        data: { subscribeExpireReminder: false },
+      });
+      this.setData({ 'userInfo.subscribeExpireReminder': false });
+      wx.showToast({ title: '已关闭提醒', icon: 'success' });
+    }
+  },
+
   async onSeedRecipes() {
     if (!this.data.hasFamily) {
       wx.showToast({ title: '请先创建家庭组', icon: 'none' });
