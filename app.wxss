@@ -1,0 +1,77 @@
+/* Apple Design System Tokens */
+page {
+  --color-primary: #0066cc;
+  --color-primary-focus: #0071e3;
+  --color-ink: #1d1d1f;
+  --color-canvas: #ffffff;
+  --color-canvas-parchment: #f5f5f7;
+  --color-surface-tile-dark: #272729;
+  --color-on-dark: #ffffff;
+  --color-ink-muted-48: #7a7a7a;
+  --color-hairline: #e0e0e0;
+  --color-danger: #ff3b30;
+  --color-warning: #ff9500;
+  --color-success: #34c759;
+
+  --font-display-lg: 600 80rpx/1.10 system-ui, -apple-system, sans-serif;
+  --font-tagline: 600 42rpx/1.19 system-ui, -apple-system, sans-serif;
+  --font-body: 400 34rpx/1.47 system-ui, -apple-system, sans-serif;
+  --font-body-strong: 600 34rpx/1.24 system-ui, -apple-system, sans-serif;
+  --font-caption: 400 28rpx/1.43 system-ui, -apple-system, sans-serif;
+
+  --radius-none: 0;
+  --radius-sm: 16rpx;
+  --radius-lg: 36rpx;
+  --radius-pill: 9999rpx;
+
+  font: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-canvas);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #ffffff;
+  font: var(--font-body);
+  border-radius: var(--radius-pill);
+  padding: 22rpx 44rpx;
+  text-align: center;
+  border: none;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  font: var(--font-body);
+  border-radius: var(--radius-pill);
+  padding: 22rpx 44rpx;
+  text-align: center;
+  border: 2rpx solid var(--color-primary);
+}
+
+.card {
+  background: var(--color-canvas);
+  border: 1rpx solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: 48rpx;
+}
+
+.tile-light {
+  background: var(--color-canvas);
+  padding: 80rpx 48rpx;
+}
+
+.tile-dark {
+  background: var(--color-surface-tile-dark);
+  color: var(--color-on-dark);
+  padding: 80rpx 48rpx;
+}
+
+.status-normal { color: var(--color-ink); }
+.status-expiring { color: var(--color-warning); }
+.status-expired { color: var(--color-danger); }
+.status-out-of-stock { color: var(--color-ink-muted-48); }
