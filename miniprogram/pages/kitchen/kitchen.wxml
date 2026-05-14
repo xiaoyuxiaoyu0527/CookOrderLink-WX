@@ -13,11 +13,11 @@
   </view>
 
   <view class="order-list">
-    <block wx:for="{{orders}}" wx:key="_id">
-      <order-card wx:if="{{item.status === activeTab}}" order="{{item}}" bind:tap="onOrderTap" />
+    <block wx:for="{{filteredOrders}}" wx:key="_id">
+      <order-card order="{{item}}" bind:tap="onOrderTap" />
     </block>
 
-    <view wx:if="{{orders.filter(o => o.status === activeTab).length === 0}}" class="empty-state">
+    <view wx:if="{{filteredOrders.length === 0}}" class="empty-state">
       <text>暂无订单</text>
     </view>
   </view>

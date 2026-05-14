@@ -13,6 +13,7 @@ Page({
     statusTabs: STATUS_TABS,
     activeTab: 'pending',
     orders: [],
+    filteredOrders: [],
     expiringCount: 0,
   },
 
@@ -32,10 +33,18 @@ Page({
   async loadOrders() {
     const orders = await getFamilyOrders(this.user.familyId);
     this.setData({ orders });
+    this.updateFilteredOrders();
   },
 
   onTabTap(e) {
-    this.setData({ activeTab: e.currentTarget.dataset.tab });
+    const activeTab = e.currentTarget.dataset.tab;
+    const filteredOrders = this.data.orders.filter(o => o.status === activeTab);
+    this.setData({ activeTab, filteredOrders });
+  },
+
+  updateFilteredOrders() {
+    const filteredOrders = this.data.orders.filter(o => o.status === this.data.activeTab);
+    this.setData({ filteredOrders });
   },
 
   onOrderTap(e) {
