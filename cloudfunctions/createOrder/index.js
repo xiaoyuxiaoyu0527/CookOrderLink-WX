@@ -72,6 +72,24 @@ exports.main = async (event, context) => {
       },
     });
 
+    // Notify husband of new order
+    const familyRes = await db.collection('families').doc(user.familyId).get();
+    const family = familyRes.data;
+    const husbandId = family.members.find(m => m !== openid);
+    if (husbandId) {
+      const dishNames = items.map(i => i.name).join('、');
+      try {
+        await cloud.openapi.subscribeMessage.send({
+          touser: husbandId,
+          templateId: 'zIoRVqR89IsQSbh2D27EtprZ8TUd-q_tDXY7gbD03r4',
+          data: { thing1: { value: `新订单：${dishNames}` } },
+          page: '/miniprogram/pages/kitchen/kitchen',
+        });
+      } catch (err) {
+        console.error('Send order notification failed:', err);
+      }
+    }
+
     return { orderId: orderRes._id };
   } catch (err) {
     console.error('createOrder error:', err);
