@@ -1,1 +1,18 @@
-.page { padding: 48rpx; }
+.page { background: var(--color-canvas); min-height: 100vh; padding-bottom: 160rpx; }
+
+.empty-state { text-align: center; padding: 200rpx 0; color: var(--color-ink-muted-48); font: var(--font-caption); }
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-canvas-parchment);
+  padding: 24rpx 48rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid var(--color-hairline);
+  z-index: 100;
+}
+.bar-info { font: var(--font-body); }
