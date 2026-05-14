@@ -1,1 +1,30 @@
-.page { padding: 48rpx; }
+.page { background: var(--color-canvas-parchment); min-height: 100vh; padding-bottom: 100rpx; }
+
+.alert-card { background: #fff3e0; padding: 24rpx 48rpx; display: flex; justify-content: space-between; align-items: center; }
+.alert-text { color: var(--color-warning); font: var(--font-caption); }
+.alert-link { color: var(--color-primary); font: var(--font-caption); }
+
+.tabs { display: flex; background: var(--color-canvas); border-bottom: 1rpx solid var(--color-hairline); }
+.tab { flex: 1; text-align: center; padding: 24rpx 0; font: var(--font-caption); color: var(--color-ink-muted-48); }
+.tab.active { color: var(--color-primary); border-bottom: 4rpx solid var(--color-primary); }
+
+.order-list { padding: 24rpx 48rpx; }
+.empty-state { text-align: center; padding: 120rpx 0; color: var(--color-ink-muted-48); font: var(--font-caption); }
+
+.inventory-entry {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-canvas);
+  padding: 32rpx 48rpx;
+  text-align: center;
+  font: var(--font-body-strong);
+  color: var(--color-primary);
+  border-top: 1rpx solid var(--color-hairline);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12rpx;
+}
+.badge { background: var(--color-danger); color: #ffffff; font: var(--font-caption); min-width: 32rpx; height: 32rpx; border-radius: 50%; display: flex; align-items: center; justify-content: center; }

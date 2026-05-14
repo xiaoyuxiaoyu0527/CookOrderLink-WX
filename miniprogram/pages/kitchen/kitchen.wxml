@@ -1,3 +1,29 @@
 <view class="page">
-  <text>厨房页</text>
+  <view wx:if="{{expiringCount > 0}}" class="alert-card" bindtap="onGoInventory">
+    <text class="alert-text">有 {{expiringCount}} 件食材需要关注</text>
+    <text class="alert-link">查看库存 ></text>
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{statusTabs}}" wx:key="key"
+          class="tab {{activeTab === item.key ? 'active' : ''}}"
+          data-tab="{{item.key}}" bindtap="onTabTap">
+      {{item.label}}
+    </view>
+  </view>
+
+  <view class="order-list">
+    <block wx:for="{{orders}}" wx:key="_id">
+      <order-card wx:if="{{item.status === activeTab}}" order="{{item}}" bind:tap="onOrderTap" />
+    </block>
+
+    <view wx:if="{{orders.filter(o => o.status === activeTab).length === 0}}" class="empty-state">
+      <text>暂无订单</text>
+    </view>
+  </view>
+
+  <view class="inventory-entry" bindtap="onGoInventory">
+    <text>库存管理</text>
+    <view wx:if="{{expiringCount > 0}}" class="badge">{{expiringCount}}</view>
+  </view>
 </view>
