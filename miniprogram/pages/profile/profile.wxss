@@ -1,1 +1,17 @@
-.page { padding: 48rpx; }
+.page { padding: 48rpx; background: var(--color-canvas-parchment); min-height: 100vh; }
+
+.setup-container { text-align: center; padding-top: 200rpx; }
+.setup-title { font: var(--font-display-lg); margin-bottom: 16rpx; }
+.setup-subtitle { font: var(--font-caption); color: var(--color-ink-muted-48); margin-bottom: 80rpx; }
+.divider-text { color: var(--color-ink-muted-48); font: var(--font-caption); margin: 32rpx 0; }
+
+.profile-container { display: flex; flex-direction: column; gap: 24rpx; }
+.card { background: var(--color-canvas); border-radius: var(--radius-lg); padding: 48rpx; }
+.card-label { font: var(--font-caption); color: var(--color-ink-muted-48); margin-bottom: 16rpx; }
+.invite-code { font: var(--font-display-lg); letter-spacing: 8rpx; margin-bottom: 32rpx; }
+.role-text { font: var(--font-body-strong); }
+
+.modal-mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 999; }
+.modal-content { background: var(--color-canvas); border-radius: var(--radius-lg); padding: 48rpx; width: 80%; }
+.modal-title { font: var(--font-tagline); margin-bottom: 32rpx; text-align: center; }
+.modal-input { border: 1rpx solid var(--color-hairline); border-radius: var(--radius-pill); padding: 22rpx 32rpx; margin-bottom: 32rpx; text-align: center; font-size: 36rpx; letter-spacing: 8rpx; }

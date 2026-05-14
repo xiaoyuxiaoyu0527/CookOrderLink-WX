@@ -1,3 +1,36 @@
 <view class="page">
-  <text>我的</text>
+  <!-- No Family State -->
+  <view wx:if="{{!hasFamily}}" class="setup-container">
+    <view class="setup-title">开始使用</view>
+    <view class="setup-subtitle">创建家庭组或输入邀请码加入</view>
+
+    <button class="btn-primary" bindtap="onCreateFamily">创建家庭组</button>
+    <view class="divider-text">或</view>
+    <button class="btn-secondary" bindtap="onShowJoinModal">输入邀请码加入</button>
+  </view>
+
+  <!-- Has Family State -->
+  <view wx:else class="profile-container">
+    <view class="card">
+      <view class="card-label">家庭邀请码</view>
+      <view class="invite-code">{{inviteCode}}</view>
+      <button class="btn-secondary" bindtap="onCopyInviteCode">复制邀请码</button>
+    </view>
+
+    <view class="card">
+      <view class="card-label">我的角色</view>
+      <view class="role-text">{{userInfo.role === 'husband' ? '烹饪者' : '点菜者'}}</view>
+    </view>
+
+    <button class="btn-secondary" bindtap="onSeedRecipes">添加示例菜谱</button>
+  </view>
+
+  <!-- Join Modal -->
+  <view wx:if="{{showJoinModal}}" class="modal-mask" bindtap="onCloseModal">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">加入家庭组</view>
+      <input class="modal-input" placeholder="请输入6位邀请码" bindinput="onJoinCodeInput" maxlength="6" />
+      <button class="btn-primary" bindtap="onJoinFamily">加入</button>
+    </view>
+  </view>
 </view>
