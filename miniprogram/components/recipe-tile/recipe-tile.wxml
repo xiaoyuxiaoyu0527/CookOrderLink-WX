@@ -1,0 +1,23 @@
+<view class="tile {{available ? (selected ? 'tile-selected' : 'tile-light') : 'tile-dark'}}" bindtap="onTap">
+  <view class="tile-content">
+    <view class="recipe-name">{{recipe.name}}</view>
+    <view class="recipe-desc">{{recipe.description}}</view>
+    <view class="recipe-meta">
+      <text>{{recipe.estimatedMinutes}}分钟</text>
+      <text wx:if="{{recipe.difficulty === 'easy'}}">简单</text>
+      <text wx:elif="{{recipe.difficulty === 'medium'}}">中等</text>
+      <text wx:else>困难</text>
+    </view>
+
+    <view wx:if="{{!available}}" class="missing-info">
+      <text class="missing-label">缺少：</text>
+      <text wx:for="{{missingIngredients}}" wx:key="name" class="missing-item">{{item.name}}</text>
+    </view>
+
+    <view wx:if="{{selected}}" class="note-area" catchtap="">
+      <input class="note-input" placeholder="添加备注，如：少放盐" value="{{recipe._note}}" bindinput="onNoteInput" />
+    </view>
+
+    <view class="check-mark" wx:if="{{selected}}">已选</view>
+  </view>
+</view>

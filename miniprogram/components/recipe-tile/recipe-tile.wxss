@@ -1,0 +1,20 @@
+.tile { padding: 80rpx 48rpx; transition: background 0.2s; }
+.tile-light { background: var(--color-canvas); }
+.tile-selected { background: var(--color-canvas); border-left: 8rpx solid var(--color-primary); }
+.tile-dark { background: var(--color-surface-tile-dark); color: var(--color-on-dark); opacity: 0.7; }
+
+.tile-content { position: relative; }
+.recipe-name { font: var(--font-display-lg); margin-bottom: 12rpx; }
+.recipe-desc { font: var(--font-body); color: var(--color-ink-muted-48); margin-bottom: 16rpx; }
+.tile-dark .recipe-desc { color: rgba(255,255,255,0.6); }
+.recipe-meta { font: var(--font-caption); color: var(--color-ink-muted-48); display: flex; gap: 24rpx; }
+.tile-dark .recipe-meta { color: rgba(255,255,255,0.5); }
+
+.missing-info { margin-top: 24rpx; font: var(--font-caption); }
+.missing-label { color: var(--color-danger); }
+.missing-item { color: var(--color-danger); margin-right: 12rpx; }
+
+.note-area { margin-top: 24rpx; }
+.note-input { background: var(--color-canvas-parchment); border-radius: var(--radius-pill); padding: 16rpx 24rpx; font: var(--font-caption); }
+
+.check-mark { position: absolute; top: 0; right: 0; background: var(--color-primary); color: #ffffff; font: var(--font-caption); padding: 4rpx 16rpx; border-radius: var(--radius-pill); }
