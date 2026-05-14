@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "厨房",
   "usingComponents": {
-    "order-card": "/miniprogram/components/order-card/order-card",
-    "status-tag": "/miniprogram/components/status-tag/status-tag"
+    "order-card": "/components/order-card/order-card",
+    "status-tag": "/components/status-tag/status-tag"
   }
 }

@@ -19,7 +19,7 @@ Page({
   async onLoad() {
     this.user = await getCurrentUser();
     if (!this.user.familyId) {
-      wx.redirectTo({ url: '/miniprogram/pages/profile/profile' });
+      wx.redirectTo({ url: '/pages/profile/profile' });
       return;
     }
   },
@@ -46,7 +46,7 @@ Page({
     const firstRecipeId = order.items[0]?.recipeId;
     if (firstRecipeId) {
       wx.navigateTo({
-        url: `/miniprogram/pages/recipe/detail?id=${firstRecipeId}&orderId=${orderId}`,
+        url: `/pages/recipe/detail?id=${firstRecipeId}&orderId=${orderId}`,
       });
     }
   },
@@ -61,6 +61,6 @@ Page({
   },
 
   onGoInventory() {
-    wx.navigateTo({ url: '/miniprogram/pages/inventory/list' });
+    wx.navigateTo({ url: '/pages/inventory/list' });
   },
 });

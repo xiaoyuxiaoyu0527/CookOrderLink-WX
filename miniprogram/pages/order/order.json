@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "点菜",
   "usingComponents": {
-    "recipe-tile": "/miniprogram/components/recipe-tile/recipe-tile"
+    "recipe-tile": "/components/recipe-tile/recipe-tile"
   }
 }

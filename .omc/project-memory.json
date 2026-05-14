@@ -156,27 +156,75 @@
   },
   "hotPaths": [
     {
+      "path": "",
+      "accessCount": 29,
+      "lastAccessed": 1778772075078,
+      "type": "directory"
+    },
+    {
+      "path": "cloudfunctions\\createOrder\\index.js",
+      "accessCount": 6,
+      "lastAccessed": 1778777841818,
+      "type": "file"
+    },
+    {
       "path": "docs\\superpowers\\specs\\2026-05-14-cook-order-link-design.md",
       "accessCount": 5,
       "lastAccessed": 1778770435852,
       "type": "file"
     },
     {
-      "path": "",
-      "accessCount": 4,
-      "lastAccessed": 1778771534810,
+      "path": "miniprogram\\pages\\order\\order.js",
+      "accessCount": 5,
+      "lastAccessed": 1778777727403,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\list.js",
+      "accessCount": 5,
+      "lastAccessed": 1778777728146,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram",
+      "accessCount": 5,
+      "lastAccessed": 1778777848000,
       "type": "directory"
+    },
+    {
+      "path": "miniprogram\\pages\\profile\\profile.js",
+      "accessCount": 4,
+      "lastAccessed": 1778777221867,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\profile\\profile.wxml",
+      "accessCount": 4,
+      "lastAccessed": 1778777309952,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\profile\\profile.wxss",
+      "accessCount": 4,
+      "lastAccessed": 1778777332800,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\order\\order.json",
+      "accessCount": 4,
+      "lastAccessed": 1778777805409,
+      "type": "file"
+    },
+    {
+      "path": "app.js",
+      "accessCount": 3,
+      "lastAccessed": 1778773446719,
+      "type": "file"
     },
     {
       "path": "docs\\superpowers\\specs\\plan.md",
       "accessCount": 2,
       "lastAccessed": 1778769682813,
-      "type": "file"
-    },
-    {
-      "path": "app.js",
-      "accessCount": 2,
-      "lastAccessed": 1778771522768,
       "type": "file"
     },
     {
@@ -195,6 +243,84 @@
       "path": "app.wxss",
       "accessCount": 2,
       "lastAccessed": 1778771523254,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\joinFamily\\package.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771740395,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\joinFamily\\index.js",
+      "accessCount": 2,
+      "lastAccessed": 1778771740503,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\profile\\profile.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771771748,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\edit.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771822558,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\edit.js",
+      "accessCount": 2,
+      "lastAccessed": 1778771824849,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\list.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771826734,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\edit.wxml",
+      "accessCount": 2,
+      "lastAccessed": 1778771828130,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\edit.wxss",
+      "accessCount": 2,
+      "lastAccessed": 1778771832229,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\list.wxml",
+      "accessCount": 2,
+      "lastAccessed": 1778771835149,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\inventory\\list.wxss",
+      "accessCount": 2,
+      "lastAccessed": 1778771838216,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\createOrder\\package.json",
+      "accessCount": 2,
+      "lastAccessed": 1778771856536,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\order\\order.wxml",
+      "accessCount": 2,
+      "lastAccessed": 1778771935626,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\order\\order.wxss",
+      "accessCount": 2,
+      "lastAccessed": 1778771938009,
       "type": "file"
     },
     {
@@ -252,16 +378,82 @@
       "type": "file"
     },
     {
-      "path": "miniprogram",
-      "accessCount": 1,
-      "lastAccessed": 1778771502920,
-      "type": "directory"
-    },
-    {
       "path": "miniprogram\\pages",
       "accessCount": 1,
       "lastAccessed": 1778771573589,
       "type": "directory"
+    },
+    {
+      "path": "miniprogram\\utils\\db.js",
+      "accessCount": 1,
+      "lastAccessed": 1778771646450,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\utils\\inventory.js",
+      "accessCount": 1,
+      "lastAccessed": 1778771647703,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\userLogin\\package.json",
+      "accessCount": 1,
+      "lastAccessed": 1778771727250,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\userLogin\\index.js",
+      "accessCount": 1,
+      "lastAccessed": 1778771728300,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\createFamily\\package.json",
+      "accessCount": 1,
+      "lastAccessed": 1778771729586,
+      "type": "file"
+    },
+    {
+      "path": "cloudfunctions\\createFamily\\index.js",
+      "accessCount": 1,
+      "lastAccessed": 1778771730796,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\utils\\seed-recipes.js",
+      "accessCount": 1,
+      "lastAccessed": 1778771756699,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\components\\status-tag\\status-tag.wxss",
+      "accessCount": 1,
+      "lastAccessed": 1778771853319,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\components\\status-tag\\status-tag.json",
+      "accessCount": 1,
+      "lastAccessed": 1778771853380,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\components\\status-tag\\status-tag.js",
+      "accessCount": 1,
+      "lastAccessed": 1778771853484,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\components\\status-tag\\status-tag.wxml",
+      "accessCount": 1,
+      "lastAccessed": 1778771853690,
+      "type": "file"
+    },
+    {
+      "path": "miniprogram\\pages\\recipe\\detail.json",
+      "accessCount": 1,
+      "lastAccessed": 1778771894978,
+      "type": "file"
     }
   ],
   "userDirectives": []

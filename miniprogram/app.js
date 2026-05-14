@@ -5,7 +5,7 @@ App({
       return;
     }
     wx.cloud.init({
-      env: 'cook-order-link-prod', // replace with your env id
+      env: 'cloud1-d0grs4ijica9a6dae', // replace with your env id
       traceUser: true,
     });
     this.login();

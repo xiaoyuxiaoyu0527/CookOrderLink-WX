@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "status-tag": "/miniprogram/components/status-tag/status-tag"
+    "status-tag": "/components/status-tag/status-tag"
   }
 }

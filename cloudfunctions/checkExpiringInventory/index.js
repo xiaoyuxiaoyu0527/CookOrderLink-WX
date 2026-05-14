@@ -45,7 +45,7 @@ exports.main = async (event, context) => {
             touser: user._id,
             templateId: 'Rk2sodg0GmD20fL0Ve30oJ3HI8m-_qjH36zqJs_rj9g',
             data: { thing1: { value: content } },
-            page: '/miniprogram/pages/inventory/list',
+            page: 'pages/inventory/list',
           });
           sentCount++;
         } catch (err) {

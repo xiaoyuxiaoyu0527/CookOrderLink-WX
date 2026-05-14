@@ -83,7 +83,7 @@ exports.main = async (event, context) => {
           touser: husbandId,
           templateId: 'zIoRVqR89IsQSbh2D27EtprZ8TUd-q_tDXY7gbD03r4',
           data: { thing1: { value: `新订单：${dishNames}` } },
-          page: '/miniprogram/pages/kitchen/kitchen',
+          page: 'pages/kitchen/kitchen',
         });
       } catch (err) {
         console.error('Send order notification failed:', err);

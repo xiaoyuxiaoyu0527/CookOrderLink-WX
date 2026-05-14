@@ -13,7 +13,7 @@ Page({
   async onLoad() {
     this.user = await getCurrentUser();
     if (!this.user.familyId) {
-      wx.redirectTo({ url: '/miniprogram/pages/profile/profile' });
+      wx.redirectTo({ url: '/pages/profile/profile' });
       return;
     }
     await this.loadData();

@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/order/order",
+    "pages/kitchen/kitchen",
+    "pages/recipe/detail",
+    "pages/inventory/list",
+    "pages/inventory/edit",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "CookOrderLink",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#7a7a7a",
+    "selectedColor": "#0066cc",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/order/order",
+        "text": "点菜",
+        "iconPath": "images/tab-order.png",
+        "selectedIconPath": "images/tab-order-active.png"
+      },
+      {
+        "pagePath": "pages/kitchen/kitchen",
+        "text": "厨房",
+        "iconPath": "images/tab-kitchen.png",
+        "selectedIconPath": "images/tab-kitchen-active.png"
+      }
+    ]
+  },
+  "cloud": true
+}

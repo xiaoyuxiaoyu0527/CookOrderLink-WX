@@ -67,11 +67,11 @@ Page({
   },
 
   onAddInventory() {
-    wx.navigateTo({ url: '/miniprogram/pages/inventory/edit' });
+    wx.navigateTo({ url: '/pages/inventory/edit' });
   },
 
   onEditInventory(e) {
     const id = e.currentTarget.dataset.id;
-    wx.navigateTo({ url: `/miniprogram/pages/inventory/edit?id=${id}` });
+    wx.navigateTo({ url: `/pages/inventory/edit?id=${id}` });
   },
 });
