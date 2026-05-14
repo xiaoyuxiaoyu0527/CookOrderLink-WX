@@ -11,19 +11,26 @@ Page({
   },
 
   async onLoad() {
-    this.user = await getCurrentUser();
-    if (!this.user.familyId) {
+    try {
+      this.user = await getCurrentUser();
+      if (!this.user || !this.user.familyId) {
+        wx.redirectTo({ url: '/pages/profile/profile' });
+        return;
+      }
+      await this.loadData();
+    } catch (err) {
+      console.error('onLoad error:', err);
       wx.redirectTo({ url: '/pages/profile/profile' });
-      return;
     }
-    await this.loadData();
   },
 
   async onShow() {
+    if (!this.user || !this.user.familyId) return;
     await this.loadData();
   },
 
   async loadData() {
+    if (!this.user || !this.user.familyId) return;
     const [recipes, inventory] = await Promise.all([
       getFamilyRecipes(this.user.familyId),
       getFamilyInventory(this.user.familyId),

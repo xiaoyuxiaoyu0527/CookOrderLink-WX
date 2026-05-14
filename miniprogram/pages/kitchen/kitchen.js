@@ -18,14 +18,20 @@ Page({
   },
 
   async onLoad() {
-    this.user = await getCurrentUser();
-    if (!this.user.familyId) {
+    try {
+      this.user = await getCurrentUser();
+      if (!this.user || !this.user.familyId) {
+        wx.redirectTo({ url: '/pages/profile/profile' });
+        return;
+      }
+    } catch (err) {
+      console.error('onLoad error:', err);
       wx.redirectTo({ url: '/pages/profile/profile' });
-      return;
     }
   },
 
   async onShow() {
+    if (!this.user || !this.user.familyId) return;
     await this.loadOrders();
     await this.checkExpiring();
   },
