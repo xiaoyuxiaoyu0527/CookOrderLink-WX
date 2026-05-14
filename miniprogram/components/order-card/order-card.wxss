@@ -1,0 +1,7 @@
+.order-card { background: var(--color-canvas); border-radius: var(--radius-lg); padding: 32rpx; margin-bottom: 16rpx; border: 1rpx solid var(--color-hairline); }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; }
+.card-time { font: var(--font-caption); color: var(--color-ink-muted-48); }
+.card-items { display: flex; flex-direction: column; gap: 8rpx; }
+.order-item { font: var(--font-body); }
+.item-note { font: var(--font-caption); color: var(--color-ink-muted-48); }
+.order-note { margin-top: 12rpx; font: var(--font-caption); color: var(--color-ink-muted-48); }
