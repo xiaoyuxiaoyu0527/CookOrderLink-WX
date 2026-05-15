@@ -1,23 +1,102 @@
 <view class="page">
-  <view class="tabs">
-    <view wx:for="{{statusTabs}}" wx:key="key"
-          class="tab {{activeTab === item.key ? 'active' : ''}}"
-          data-tab="{{item.key}}" bindtap="onTabTap">
-      {{item.label}}
+  <!-- Kitchen Header -->
+  <view class="kitchen-header">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="header-greeting">
+        <text class="greeting-emoji">👨‍🍳</text>
+        <view class="greeting-text">
+          <text class="greeting-title">厨房看板</text>
+          <text class="greeting-sub">{{orders.length > 0 ? '共 ' + orders.length + ' 个订单' : '今天还没有订单'}}</text>
+        </view>
+      </view>
+      <view wx:if="{{pendingCount > 0}}" class="header-stat">
+        <text class="stat-number">{{pendingCount}}</text>
+        <text class="stat-label">待做</text>
+      </view>
     </view>
   </view>
 
+  <!-- Tabs -->
+  <view class="tabs-wrap">
+    <view class="tabs">
+      <view wx:for="{{statusTabs}}" wx:key="key"
+            class="tab {{activeTab === item.key ? 'active' : ''}}"
+            data-tab="{{item.key}}" bindtap="onTabTap">
+        <text class="tab-label">{{item.label}}</text>
+        <view wx:if="{{item.count > 0}}" class="tab-badge">{{item.count}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Complete All Bar -->
+  <view wx:if="{{activeTab === 'pending' && filteredOrders.length > 1}}" class="action-bar">
+    <view class="action-bar-info">
+      <text class="action-bar-count">{{filteredOrders.length}} 个待做订单</text>
+    </view>
+    <view class="btn-complete-all" bindtap="onCompleteAll">
+      <text class="complete-all-icon">✓</text>
+      <text class="complete-all-text">一键完成</text>
+    </view>
+  </view>
+
+  <!-- Order List -->
   <view class="order-list">
     <block wx:for="{{filteredOrders}}" wx:key="_id">
-      <order-card order="{{item}}" bind:tap="onOrderTap" />
-      <view wx:if="{{item.status === 'pending'}}" class="order-action">
-        <button class="btn-ghost" bindtap="onCompleteOrder" data-id="{{item._id}}">标记完成</button>
+      <view class="order-card-wrap">
+        <view class="order-accent order-accent-{{item.status}}"></view>
+        <order-card order="{{item}}" bind:tap="onOrderTap" />
+      </view>
+      <view wx:if="{{item.status === 'pending'}}" class="order-actions">
+        <view class="action-btn action-btn-done" bindtap="onCompleteOrder" data-id="{{item._id}}">
+          <text class="action-btn-icon">✓</text>
+          <text class="action-btn-text">完成</text>
+        </view>
+        <view class="action-btn action-btn-cancel" bindtap="onCancelOrder" data-id="{{item._id}}">
+          <text class="action-btn-icon">✕</text>
+          <text class="action-btn-text">取消</text>
+        </view>
+      </view>
+      <view wx:if="{{item.status === 'cancelled' && item.cancelReason}}" class="cancel-reason-card">
+        <text class="cancel-reason-icon">💬</text>
+        <view class="cancel-reason-body">
+          <text class="cancel-reason-label">取消原因</text>
+          <text class="cancel-reason-text">{{item.cancelReason}}</text>
+        </view>
       </view>
     </block>
 
+    <!-- Empty State -->
     <view wx:if="{{filteredOrders.length === 0}}" class="empty-state">
-      <view class="empty-icon">📋</view>
-      <text class="empty-text">暂无订单</text>
+      <view class="empty-illustration">
+        <view class="empty-plate">
+          <text class="empty-emoji">{{activeTab === 'pending' ? '🍳' : activeTab === 'done' ? '🎉' : '📝'}}</text>
+        </view>
+      </view>
+      <text class="empty-title">{{activeTab === 'pending' ? '今天还没点菜' : activeTab === 'done' ? '还没有完成的订单' : '没有取消的订单'}}</text>
+      <text class="empty-sub">{{activeTab === 'pending' ? '去点菜页面看看想吃什么吧' : activeTab === 'done' ? '加油，马上就有啦' : '一切顺利~'}}</text>
+    </view>
+  </view>
+
+  <!-- Cancel Reason Modal -->
+  <view wx:if="{{showCancelModal}}" class="modal-mask" catchtap="onCloseCancelModal">
+    <view class="modal-content" catchtap="noop">
+      <view class="modal-header">
+        <view class="modal-icon-wrap">
+          <text class="modal-icon">🗑️</text>
+        </view>
+        <text class="modal-title">取消订单</text>
+        <text class="modal-desc">请告诉我们取消的原因</text>
+      </view>
+      <textarea class="modal-textarea" placeholder="输入取消原因..." bindinput="onCancelReasonInput" value="{{cancelReason}}" maxlength="100" />
+      <view class="modal-btns">
+        <view class="btn-modal-back" catchtap="onCloseCancelModal">
+          <text>返回</text>
+        </view>
+        <view class="btn-modal-confirm" catchtap="onConfirmCancel">
+          <text>确认取消</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>

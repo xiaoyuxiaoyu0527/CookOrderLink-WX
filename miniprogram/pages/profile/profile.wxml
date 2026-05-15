@@ -57,12 +57,12 @@
     <view class="modal-content" catchtap="noop">
       <view class="modal-title">选择角色</view>
       <view class="role-options">
-        <view class="role-option {{userInfo.role === 'husband' ? 'active' : ''}}" bindtap="onSelectRole" data-role="husband">
+        <view class="role-option {{selectedRole === 'husband' ? 'active' : ''}}" bindtap="onSelectRole" data-role="husband">
           <view class="role-icon">👨‍🍳</view>
           <view class="role-name">烹饪者</view>
           <view class="role-desc">负责做饭、管理库存</view>
         </view>
-        <view class="role-option {{userInfo.role === 'wife' ? 'active' : ''}}" bindtap="onSelectRole" data-role="wife">
+        <view class="role-option {{selectedRole === 'wife' ? 'active' : ''}}" bindtap="onSelectRole" data-role="wife">
           <view class="role-icon">👩</view>
           <view class="role-name">点菜者</view>
           <view class="role-desc">选择想吃的菜品</view>

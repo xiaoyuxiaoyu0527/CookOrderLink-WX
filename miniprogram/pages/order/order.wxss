@@ -127,9 +127,10 @@
 .cart-item-qty-wrap {
   display: flex;
   align-items: center;
-  width: 180rpx;
+  width: 170rpx;
   flex-shrink: 0;
   margin-left: 16rpx;
+  margin-right: 56rpx;
   justify-content: space-between;
 }
 

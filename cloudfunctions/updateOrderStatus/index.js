@@ -4,7 +4,7 @@ const db = cloud.database();
 const _ = db.command;
 
 const VALID_TRANSITIONS = {
-  pending: ['cooking', 'cancelled'],
+  pending: ['cooking', 'done', 'cancelled'],
   cooking: ['done', 'cancelled'],
   done: [],
   cancelled: [],

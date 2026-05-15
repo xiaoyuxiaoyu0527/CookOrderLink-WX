@@ -1,14 +1,5 @@
 .order-card {
-  background: var(--color-canvas-card);
-  border-radius: var(--radius-lg);
-  padding: 28rpx 32rpx;
-  margin-bottom: 20rpx;
-  box-shadow: var(--shadow-card);
-  transition: all 0.2s ease;
-}
-.order-card:active {
-  transform: scale(0.98);
-  box-shadow: var(--shadow-card-hover);
+  padding: 28rpx 32rpx 24rpx;
 }
 
 .card-header {
@@ -25,35 +16,36 @@
 }
 
 .card-time {
-  font: var(--font-tiny);
+  font: 400 22rpx/1.3 'PingFang SC', system-ui, sans-serif;
   color: var(--color-ink-muted);
 }
 
 .header-arrow {
-  font-size: 36rpx;
-  color: var(--color-ink-muted);
+  font-size: 32rpx;
+  color: var(--color-hairline);
   font-weight: 300;
 }
 
 .card-items {
   display: flex;
   flex-direction: column;
-  gap: 12rpx;
+  gap: 14rpx;
 }
 
 .order-item {
   display: flex;
   align-items: flex-start;
-  gap: 12rpx;
+  gap: 14rpx;
 }
 
 .item-dot {
-  width: 10rpx;
-  height: 10rpx;
+  width: 12rpx;
+  height: 12rpx;
   border-radius: 50%;
-  background: var(--color-primary-light);
-  margin-top: 14rpx;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  margin-top: 12rpx;
   flex-shrink: 0;
+  box-shadow: 0 2rpx 6rpx rgba(224,122,58,0.2);
 }
 
 .item-content {
@@ -61,15 +53,16 @@
   display: flex;
   flex-direction: column;
   gap: 4rpx;
+  min-width: 0;
 }
 
 .item-name {
-  font: var(--font-body-medium);
+  font: 500 30rpx/1.4 'PingFang SC', system-ui, sans-serif;
   color: var(--color-ink);
 }
 
 .item-note {
-  font: var(--font-tiny);
+  font: 400 22rpx/1.4 'PingFang SC', system-ui, sans-serif;
   color: var(--color-ink-muted);
   padding-left: 4rpx;
 }
@@ -84,13 +77,12 @@
 }
 
 .note-label {
-  font: var(--font-tiny);
+  font: 500 22rpx/1.3 'PingFang SC', system-ui, sans-serif;
   color: var(--color-primary);
-  font-weight: 500;
   flex-shrink: 0;
 }
 
 .note-text {
-  font: var(--font-caption);
+  font: 400 24rpx/1.5 'PingFang SC', system-ui, sans-serif;
   color: var(--color-ink-soft);
 }
