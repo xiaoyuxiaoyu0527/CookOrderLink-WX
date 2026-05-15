@@ -43,13 +43,11 @@ Page({
     const idx = selectedIds.indexOf(recipeId);
 
     if (idx >= 0) {
-      // Already selected - increase quantity
       selectedRecipes[recipeId] = {
         ...selectedRecipes[recipeId],
         quantity: (selectedRecipes[recipeId]?.quantity || 1) + 1,
       };
     } else {
-      // New selection
       selectedIds.push(recipeId);
       selectedRecipes[recipeId] = { quantity: 1, note: '' };
     }
@@ -87,10 +85,27 @@ Page({
       totalCount,
       totalMinutes,
     });
+
+    if (this.data.showCart) {
+      this.refreshCartItems();
+    }
   },
 
-  // Cart sheet
-  onShowCart() {
+  // Cart panel
+  onToggleCart() {
+    if (this.data.showCart) {
+      this.setData({ showCart: false });
+    } else {
+      this.refreshCartItems();
+      this.setData({ showCart: true });
+    }
+  },
+
+  onHideCart() {
+    this.setData({ showCart: false });
+  },
+
+  refreshCartItems() {
     const cartItems = this.data.selectedIds.map(id => {
       const recipe = this.data.recipes.find(r => r._id === id);
       const info = this.data.selectedRecipes[id] || { quantity: 1, note: '' };
@@ -101,11 +116,7 @@ Page({
         note: info.note,
       };
     });
-    this.setData({ showCart: true, cartItems });
-  },
-
-  onHideCart() {
-    this.setData({ showCart: false });
+    this.setData({ cartItems });
   },
 
   onClearAll() {
@@ -125,7 +136,6 @@ Page({
     if (selectedRecipes[id]) {
       selectedRecipes[id].quantity += 1;
       this.updateTotals(this.data.selectedIds, selectedRecipes);
-      this.refreshCartItems();
     }
   },
 
@@ -134,46 +144,21 @@ Page({
     const selectedRecipes = { ...this.data.selectedRecipes };
     if (selectedRecipes[id]) {
       if (selectedRecipes[id].quantity <= 1) {
-        // Remove item completely
         const selectedIds = this.data.selectedIds.filter(i => i !== id);
         delete selectedRecipes[id];
         this.updateTotals(selectedIds, selectedRecipes);
-        this.refreshCartItems();
-        if (this.data.cartItems.length <= 1) {
+        if (selectedIds.length === 0) {
           this.setData({ showCart: false });
         }
       } else {
         selectedRecipes[id].quantity -= 1;
         this.updateTotals(this.data.selectedIds, selectedRecipes);
-        this.refreshCartItems();
       }
     }
   },
 
-  refreshCartItems() {
-    const cartItems = this.data.selectedIds.map(id => {
-      const recipe = this.data.recipes.find(r => r._id === id);
-      const info = this.data.selectedRecipes[id] || { quantity: 1, note: '' };
-      return {
-        recipeId: id,
-        name: recipe.name,
-        quantity: info.quantity,
-        note: info.note,
-      };
-    });
-    this.setData({ cartItems });
-  },
-
   // Submit
   async onSubmitOrder() {
-    await this.submitOrder();
-  },
-
-  async onSubmitFromCart() {
-    await this.submitOrder();
-  },
-
-  async submitOrder() {
     if (this.data.selectedIds.length === 0) {
       wx.showToast({ title: '请先选择菜品', icon: 'none' });
       return;
