@@ -1,0 +1,82 @@
+<view class="page">
+  <!-- Basic Info -->
+  <view class="section">
+    <view class="section-title">基本信息</view>
+    <view class="form-group">
+      <view class="form-label">菜品名称 *</view>
+      <input class="form-input" placeholder="如：番茄炒蛋" value="{{name}}" bindinput="onInputName" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">描述</view>
+      <input class="form-input" placeholder="简单描述这道菜" value="{{description}}" bindinput="onInputDesc" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">分类</view>
+      <picker range="{{categories}}" bindchange="onSelectCategory">
+        <view class="form-picker">{{category || '选择分类'}}</view>
+      </picker>
+    </view>
+    <view class="form-group">
+      <view class="form-label">难度</view>
+      <picker range="{{difficulties}}" range-key="label" bindchange="onSelectDifficulty">
+        <view class="form-picker">{{difficulty === 'easy' ? '简单' : difficulty === 'medium' ? '中等' : '困难'}}</view>
+      </picker>
+    </view>
+    <view class="form-group">
+      <view class="form-label">预计时间（分钟）</view>
+      <input class="form-input" type="number" placeholder="如：30" value="{{estimatedMinutes}}" bindinput="onInputMinutes" />
+    </view>
+  </view>
+
+  <!-- Ingredients -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">食材清单</view>
+      <view class="add-btn" bindtap="onAddIngredient">+ 添加</view>
+    </view>
+    <view wx:for="{{ingredients}}" wx:key="index" class="ingredient-row">
+      <input class="form-input ingredient-name" placeholder="食材名称" value="{{item.name}}" bindinput="onInputIngredientName" data-idx="{{index}}" />
+      <input class="form-input ingredient-amount" type="digit" placeholder="用量" value="{{item.amount}}" bindinput="onInputIngredientAmount" data-idx="{{index}}" />
+      <input class="form-input ingredient-unit" placeholder="单位" value="{{item.unit}}" bindinput="onInputIngredientUnit" data-idx="{{index}}" />
+      <view class="remove-btn" bindtap="onRemoveIngredient" data-idx="{{index}}">×</view>
+    </view>
+  </view>
+
+  <!-- Steps -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">制作步骤</view>
+      <view class="add-btn" bindtap="onAddStep">+ 添加</view>
+    </view>
+    <view wx:for="{{steps}}" wx:key="index" class="step-row">
+      <view class="step-number">{{index + 1}}</view>
+      <view class="step-inputs">
+        <input class="form-input" placeholder="步骤描述" value="{{item.desc}}" bindinput="onInputStepDesc" data-idx="{{index}}" />
+        <input class="form-input step-tips" placeholder="小贴士（可选）" value="{{item.tips}}" bindinput="onInputStepTips" data-idx="{{index}}" />
+      </view>
+      <view class="remove-btn" bindtap="onRemoveStep" data-idx="{{index}}">×</view>
+    </view>
+  </view>
+
+  <!-- Tutorials -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">视频教程</view>
+      <view class="add-btn" bindtap="onAddTutorial">+ 添加</view>
+    </view>
+    <view wx:for="{{tutorials}}" wx:key="index" class="tutorial-row">
+      <picker range="{{['哔哩哔哩', '小红书']}}" bindchange="onSelectTutorialPlatform" data-idx="{{index}}">
+        <view class="form-picker tutorial-platform">{{item.platform === 'bilibili' ? '哔哩哔哩' : '小红书'}}</view>
+      </picker>
+      <input class="form-input" placeholder="教程标题" value="{{item.title}}" bindinput="onInputTutorialTitle" data-idx="{{index}}" />
+      <input class="form-input" placeholder="视频链接" value="{{item.url}}" bindinput="onInputTutorialUrl" data-idx="{{index}}" />
+      <view class="remove-btn" bindtap="onRemoveTutorial" data-idx="{{index}}">×</view>
+    </view>
+  </view>
+
+  <!-- Actions -->
+  <view class="actions">
+    <button class="btn-secondary" bindtap="onCancel">取消</button>
+    <button class="btn-primary" bindtap="onSave">保存菜谱</button>
+  </view>
+</view>
