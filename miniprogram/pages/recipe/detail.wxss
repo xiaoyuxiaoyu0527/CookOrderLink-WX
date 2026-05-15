@@ -1,22 +1,184 @@
-.page { background: var(--color-canvas); min-height: 100vh; padding-bottom: 160rpx; }
+.page {
+  background: var(--color-canvas);
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
 
-.hero { padding: 80rpx 48rpx; background: var(--color-canvas-parchment); }
-.hero-img { width: 100%; height: 400rpx; border-radius: var(--radius-lg); margin-bottom: 32rpx; }
-.hero-title { font: var(--font-display-lg); margin-bottom: 12rpx; }
-.hero-desc { font: var(--font-body); color: var(--color-ink-muted-48); margin-bottom: 16rpx; }
-.hero-meta { font: var(--font-caption); color: var(--color-ink-muted-48); display: flex; gap: 24rpx; }
+.recipe-header {
+  padding: 40rpx 32rpx;
+  background: linear-gradient(135deg, #fff8f0 0%, #fdf8f3 100%);
+}
 
-.section { padding: 48rpx; }
-.section-title { font: var(--font-tagline); margin-bottom: 24rpx; }
+.recipe-category {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #ffffff;
+  font: var(--font-tiny);
+  padding: 6rpx 16rpx;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16rpx;
+}
 
-.ingredient-row { display: flex; justify-content: space-between; padding: 16rpx 0; border-bottom: 1rpx solid var(--color-hairline); }
-.ingredient-name { font: var(--font-body); }
-.ingredient-amount { font: var(--font-body); color: var(--color-ink-muted-48); }
+.recipe-name {
+  font: var(--font-display);
+  color: var(--color-ink);
+  margin-bottom: 12rpx;
+}
 
-.step { display: flex; gap: 24rpx; margin-bottom: 32rpx; }
-.step-num { width: 48rpx; height: 48rpx; border-radius: 50%; background: var(--color-primary); color: #ffffff; display: flex; align-items: center; justify-content: center; font: var(--font-caption); flex-shrink: 0; }
-.step-content { flex: 1; }
-.step-desc { font: var(--font-body); display: block; }
-.step-tips { font: var(--font-caption); color: var(--color-ink-muted-48); display: block; margin-top: 8rpx; }
+.recipe-desc {
+  font: var(--font-body);
+  color: var(--color-ink-muted);
+  margin-bottom: 20rpx;
+}
 
-.actions { position: fixed; bottom: 0; left: 0; right: 0; padding: 24rpx 48rpx; background: var(--color-canvas-parchment); border-top: 1rpx solid var(--color-hairline); }
+.recipe-meta {
+  display: flex;
+  gap: 24rpx;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.meta-icon {
+  font-size: 24rpx;
+}
+
+.meta-text {
+  font: var(--font-caption);
+  color: var(--color-ink-soft);
+}
+
+.section {
+  padding: 32rpx;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.section-title {
+  font: var(--font-title);
+  color: var(--color-ink);
+  margin-bottom: 24rpx;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  background: var(--color-canvas-warm);
+  border-radius: var(--radius-md);
+}
+
+.ingredient-name {
+  font: var(--font-body);
+  color: var(--color-ink);
+}
+
+.ingredient-amount {
+  font: var(--font-body-medium);
+  color: var(--color-primary);
+}
+
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.step-item {
+  display: flex;
+  gap: 20rpx;
+}
+
+.step-number {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #ffffff;
+  font: var(--font-body-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.step-desc {
+  font: var(--font-body);
+  color: var(--color-ink);
+}
+
+.step-tips {
+  font: var(--font-caption);
+  color: var(--color-ink-muted);
+  padding: 12rpx 16rpx;
+  background: #fff8f0;
+  border-radius: var(--radius-sm);
+}
+
+.tutorials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.tutorial-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx;
+  background: var(--color-canvas-warm);
+  border-radius: var(--radius-lg);
+}
+
+.tutorial-icon {
+  font-size: 40rpx;
+}
+
+.tutorial-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.tutorial-platform {
+  font: var(--font-tiny);
+  color: var(--color-ink-muted);
+}
+
+.tutorial-title {
+  font: var(--font-body-medium);
+  color: var(--color-ink);
+}
+
+.tutorial-arrow {
+  font-size: 36rpx;
+  color: var(--color-ink-muted);
+}
+
+.bottom-action {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx 32rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: var(--color-canvas-card);
+  box-shadow: 0 -4rpx 20rpx rgba(61, 44, 30, 0.08);
+}

@@ -1,36 +1,71 @@
 <view class="page" wx:if="{{recipe}}">
-  <view class="hero">
-    <image wx:if="{{recipe.coverUrl}}" src="{{recipe.coverUrl}}" class="hero-img" mode="aspectFill" />
-    <view class="hero-title">{{recipe.name}}</view>
-    <view class="hero-desc">{{recipe.description}}</view>
-    <view class="hero-meta">
-      <text>{{recipe.estimatedMinutes}}分钟</text>
-      <text>{{recipe.category}}</text>
-    </view>
-  </view>
-
-  <view class="section">
-    <view class="section-title">食材清单</view>
-    <view wx:for="{{recipe.ingredients}}" wx:key="name" class="ingredient-row">
-      <text class="ingredient-name">{{item.name}}</text>
-      <text class="ingredient-amount">{{item.amount}}{{item.unit}}</text>
-    </view>
-  </view>
-
-  <view class="section">
-    <view class="section-title">制作步骤</view>
-    <view wx:for="{{recipe.steps}}" wx:key="order" class="step">
-      <view class="step-num">{{item.order}}</view>
-      <view class="step-content">
-        <text class="step-desc">{{item.desc}}</text>
-        <text wx:if="{{item.tips}}" class="step-tips">小贴士：{{item.tips}}</text>
+  <!-- Header -->
+  <view class="recipe-header">
+    <view class="recipe-category">{{recipe.category}}</view>
+    <view class="recipe-name">{{recipe.name}}</view>
+    <view class="recipe-desc">{{recipe.description}}</view>
+    <view class="recipe-meta">
+      <view class="meta-item">
+        <text class="meta-icon">⏱</text>
+        <text class="meta-text">{{recipe.estimatedMinutes}}分钟</text>
+      </view>
+      <view class="meta-item">
+        <text class="meta-icon">📊</text>
+        <text class="meta-text" wx:if="{{recipe.difficulty === 'easy'}}">简单</text>
+        <text class="meta-text" wx:elif="{{recipe.difficulty === 'medium'}}">中等</text>
+        <text class="meta-text" wx:else>困难</text>
       </view>
     </view>
   </view>
 
-  <view wx:if="{{orderId}}" class="actions">
-    <button wx:if="{{canStartCooking}}" class="btn-primary" bindtap="onStartCooking">开始做菜</button>
-    <button wx:if="{{canCompleteCooking}}" class="btn-primary" bindtap="onCompleteCooking">完成做菜</button>
-    <button wx:if="{{orderStatus === 'done'}}" class="btn-secondary" bindtap="onBackToKitchen">返回厨房</button>
+  <!-- Ingredients -->
+  <view class="section">
+    <view class="section-title">🛒 需要购买的材料</view>
+    <view class="ingredients-list">
+      <view wx:for="{{recipe.ingredients}}" wx:key="name" class="ingredient-item">
+        <text class="ingredient-name">{{item.name}}</text>
+        <text class="ingredient-amount">{{item.amount}}{{item.unit}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Steps -->
+  <view class="section">
+    <view class="section-title">👨‍🍳 制作步骤</view>
+    <view class="steps-list">
+      <view wx:for="{{recipe.steps}}" wx:key="order" class="step-item">
+        <view class="step-number">{{item.order}}</view>
+        <view class="step-content">
+          <text class="step-desc">{{item.desc}}</text>
+          <text wx:if="{{item.tips}}" class="step-tips">💡 {{item.tips}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Tutorials -->
+  <view class="section" wx:if="{{recipe.tutorials && recipe.tutorials.length > 0}}">
+    <view class="section-title">🎬 视频教程</view>
+    <view class="tutorials-list">
+      <view wx:for="{{recipe.tutorials}}" wx:key="url" class="tutorial-item" bindtap="onOpenTutorial" data-url="{{item.url}}">
+        <view class="tutorial-icon">
+          <text wx:if="{{item.platform === 'bilibili'}}">🔴</text>
+          <text wx:elif="{{item.platform === 'xiaohongshu'}}">📕</text>
+          <text wx:else>📺</text>
+        </view>
+        <view class="tutorial-info">
+          <text class="tutorial-platform" wx:if="{{item.platform === 'bilibili'}}">哔哩哔哩</text>
+          <text class="tutorial-platform" wx:elif="{{item.platform === 'xiaohongshu'}}">小红书</text>
+          <text class="tutorial-platform" wx:else>{{item.platform}}</text>
+          <text class="tutorial-title">{{item.title}}</text>
+        </view>
+        <view class="tutorial-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Back Button -->
+  <view class="bottom-action">
+    <button class="btn-secondary" bindtap="onBack">返回</button>
   </view>
 </view>
