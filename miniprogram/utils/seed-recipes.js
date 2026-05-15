@@ -572,16 +572,18 @@ const SEED_RECIPES = [
 ];
 
 async function seedRecipes(familyId, openid) {
-  const db = wx.cloud.database();
   for (const recipe of SEED_RECIPES) {
-    await db.collection('recipes').add({
+    await wx.cloud.callFunction({
+      name: 'createRecipe',
       data: {
-        ...recipe,
-        familyId,
-        coverUrl: '',
-        createdBy: openid,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name: recipe.name,
+        description: recipe.description,
+        category: recipe.category,
+        difficulty: recipe.difficulty,
+        estimatedMinutes: recipe.estimatedMinutes,
+        ingredients: recipe.ingredients,
+        steps: recipe.steps,
+        tutorials: recipe.tutorials,
       },
     });
   }
