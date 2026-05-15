@@ -72,6 +72,15 @@ Page({
     }
   },
 
+  onItemTap(e) {
+    const { recipeId, orderId } = e.detail;
+    if (recipeId) {
+      wx.navigateTo({
+        url: `/pages/recipe/detail?id=${recipeId}&orderId=${orderId}`,
+      });
+    }
+  },
+
   onCompleteOrder(e) {
     const orderId = e.currentTarget.dataset.id;
     wx.showModal({

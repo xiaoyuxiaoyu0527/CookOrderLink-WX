@@ -45,7 +45,7 @@
     <block wx:for="{{filteredOrders}}" wx:key="_id">
       <view class="order-card-wrap">
         <view class="order-accent order-accent-{{item.status}}"></view>
-        <order-card order="{{item}}" bind:tap="onOrderTap" />
+        <order-card order="{{item}}" bind:tap="onOrderTap" bind:itemtap="onItemTap" />
       </view>
       <view wx:if="{{item.status === 'pending'}}" class="order-actions">
         <view class="action-btn action-btn-done" bindtap="onCompleteOrder" data-id="{{item._id}}">

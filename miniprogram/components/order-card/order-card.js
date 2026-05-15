@@ -20,5 +20,9 @@ Component({
     onTap() {
       this.triggerEvent('tap', { orderId: this.data.order._id });
     },
+    onItemTap(e) {
+      const { recipeId, orderId } = e.currentTarget.dataset;
+      this.triggerEvent('itemtap', { recipeId, orderId });
+    },
   },
 });

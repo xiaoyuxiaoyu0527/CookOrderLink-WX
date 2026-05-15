@@ -36,6 +36,15 @@
   display: flex;
   align-items: flex-start;
   gap: 14rpx;
+  padding: 8rpx 0;
+}
+
+.item-arrow {
+  font-size: 28rpx;
+  color: var(--color-hairline);
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-top: 4rpx;
 }
 
 .item-dot {
