@@ -41,9 +41,54 @@
 }
 .meta-icon { font-size: 22rpx; }
 .meta-text { font: var(--font-tiny); color: var(--color-ink-soft); }
-.note-area { margin-top: 20rpx; }
+
+/* Order options */
+.order-options {
+  margin-top: 24rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid var(--color-hairline);
+}
+.quantity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.quantity-label {
+  font: var(--font-caption-medium);
+  color: var(--color-ink-soft);
+}
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.qty-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: var(--color-canvas-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: var(--color-ink);
+  font-weight: 500;
+}
+.qty-btn:active {
+  background: var(--color-hairline);
+}
+.qty-value {
+  font: var(--font-body-strong);
+  color: var(--color-ink);
+  min-width: 40rpx;
+  text-align: center;
+}
 .note-input {
-  background: var(--color-canvas-warm); border-radius: var(--radius-pill);
-  padding: 16rpx 28rpx; font: var(--font-caption); color: var(--color-ink);
+  background: var(--color-canvas-warm);
+  border-radius: var(--radius-pill);
+  padding: 16rpx 28rpx;
+  font: var(--font-caption);
+  color: var(--color-ink);
   border: 1rpx solid var(--color-hairline);
 }

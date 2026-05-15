@@ -22,8 +22,17 @@
         <text class="meta-text" wx:else>困难</text>
       </view>
     </view>
-    <view wx:if="{{selected}}" class="note-area" catchtap="noop">
-      <input class="note-input" placeholder="添加备注，如：少放盐" value="{{recipe._note}}" bindinput="onNoteInput" />
+    <!-- Quantity and Note when selected -->
+    <view wx:if="{{selected}}" class="order-options" catchtap="noop">
+      <view class="quantity-row">
+        <text class="quantity-label">份数</text>
+        <view class="quantity-control">
+          <view class="qty-btn" catchtap="onDecrease">-</view>
+          <text class="qty-value">{{quantity}}</text>
+          <view class="qty-btn" catchtap="onIncrease">+</view>
+        </view>
+      </view>
+      <input class="note-input" placeholder="添加备注，如：少放盐" value="{{note}}" bindinput="onNoteInput" />
     </view>
   </view>
 </view>

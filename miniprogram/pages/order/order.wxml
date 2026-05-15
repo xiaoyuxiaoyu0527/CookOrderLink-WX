@@ -8,7 +8,10 @@
     <recipe-tile
       recipe="{{item}}"
       selected="{{selectedIds.indexOf(item._id) >= 0}}"
+      quantity="{{selectedRecipes[item._id].quantity || 1}}"
+      note="{{selectedRecipes[item._id].note || ''}}"
       bind:toggle="onToggleRecipe"
+      bind:quantitychange="onQuantityChange"
       bind:notechange="onNoteChange" />
   </view>
 
@@ -17,11 +20,36 @@
     <text class="empty-text">暂无菜品，请先添加菜谱</text>
   </view>
 
-  <view wx:if="{{totalCount > 0}}" class="bottom-bar">
+  <!-- Bottom Bar -->
+  <view wx:if="{{totalCount > 0}}" class="bottom-bar" bindtap="onShowCart">
     <view class="bar-info">
       <text class="bar-count">已选 {{totalCount}} 道菜</text>
       <text class="bar-time" wx:if="{{totalMinutes > 0}}">约 {{totalMinutes}} 分钟</text>
     </view>
-    <button class="btn-primary" bindtap="onSubmitOrder">提交订单</button>
+    <button class="btn-primary" catchtap="onSubmitOrder">提交订单</button>
+  </view>
+
+  <!-- Cart Sheet -->
+  <view wx:if="{{showCart}}" class="cart-mask" bindtap="onHideCart">
+    <view class="cart-sheet" catchtap="noop">
+      <view class="cart-header">
+        <text class="cart-title">已选菜品</text>
+        <view class="cart-clear" bindtap="onClearAll">清空</view>
+      </view>
+      <scroll-view class="cart-list" scroll-y>
+        <view wx:for="{{cartItems}}" wx:key="recipeId" class="cart-item">
+          <view class="cart-item-info">
+            <text class="cart-item-name">{{item.name}}</text>
+            <text class="cart-item-qty">x{{item.quantity}}</text>
+          </view>
+          <text wx:if="{{item.note}}" class="cart-item-note">{{item.note}}</text>
+          <view class="cart-item-remove" bindtap="onRemoveItem" data-id="{{item.recipeId}}">移除</view>
+        </view>
+      </scroll-view>
+      <view class="cart-footer">
+        <text class="cart-total">共 {{totalCount}} 道菜</text>
+        <button class="btn-primary" bindtap="onSubmitFromCart">提交订单</button>
+      </view>
+    </view>
   </view>
 </view>
