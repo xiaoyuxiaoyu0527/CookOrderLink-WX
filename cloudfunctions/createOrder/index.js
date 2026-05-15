@@ -34,6 +34,7 @@ exports.main = async (event, context) => {
         items: items.map(i => ({
           recipeId: i.recipeId,
           name: i.name,
+          quantity: i.quantity || 1,
           note: i.note || '',
         })),
         createdAt: db.serverDate(),

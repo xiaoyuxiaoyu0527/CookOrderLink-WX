@@ -137,7 +137,8 @@ Page({
     wx.showLoading({ title: '保存中...' });
 
     try {
-      await getCollection(COLLECTIONS.RECIPES).add({
+      const result = await wx.cloud.callFunction({
+        name: 'createRecipe',
         data: {
           name: name.trim(),
           description: description.trim(),
@@ -159,13 +160,13 @@ Page({
             title: t.title.trim(),
             url: t.url.trim(),
           })),
-          familyId: this.user.familyId,
-          coverUrl: '',
-          createdBy: this.user._id,
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
       });
+      if (result.result && result.result.error) {
+        wx.hideLoading();
+        wx.showToast({ title: result.result.error, icon: 'none' });
+        return;
+      }
 
       wx.hideLoading();
       wx.showToast({ title: '添加成功', icon: 'success' });

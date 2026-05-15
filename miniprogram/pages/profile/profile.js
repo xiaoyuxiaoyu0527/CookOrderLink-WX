@@ -88,7 +88,8 @@ Page({
       wx.requestSubscribeMessage({
         tmplIds: ['Rk2sodg0GmD20fL0Ve30oJ3HI8m-_qjH36zqJs_rj9g'],
         success: async () => {
-          await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+          await wx.cloud.callFunction({
+            name: 'switchRole',
             data: { subscribeExpireReminder: true },
           });
           this.setData({ 'userInfo.subscribeExpireReminder': true });
@@ -99,7 +100,8 @@ Page({
         },
       });
     } else {
-      await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+      await wx.cloud.callFunction({
+        name: 'switchRole',
         data: { subscribeExpireReminder: false },
       });
       this.setData({ 'userInfo.subscribeExpireReminder': false });
@@ -142,9 +144,14 @@ Page({
       wx.showToast({ title: '请选择角色', icon: 'none' });
       return;
     }
-    await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+    const result = await wx.cloud.callFunction({
+      name: 'switchRole',
       data: { role },
     });
+    if (result.result && result.result.error) {
+      wx.showToast({ title: result.result.error, icon: 'none' });
+      return;
+    }
     this.setData({
       'userInfo.role': role,
       showRoleModal: false,
@@ -159,9 +166,13 @@ Page({
       confirmColor: '#ff3b30',
       success: async (res) => {
         if (res.confirm) {
-          await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
-            data: { familyId: '' },
+          const result = await wx.cloud.callFunction({
+            name: 'leaveFamily',
           });
+          if (result.result && result.result.error) {
+            wx.showToast({ title: result.result.error, icon: 'none' });
+            return;
+          }
           this.setData({
             familyId: '',
             hasFamily: false,
