@@ -161,8 +161,6 @@
   min-width: 40rpx;
   text-align: center;
 }
-}
-
 
 /* Bottom Action Bar */
 .cart-action-bar {
