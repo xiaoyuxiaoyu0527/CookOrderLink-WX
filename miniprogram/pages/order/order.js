@@ -43,9 +43,13 @@ Page({
     const idx = selectedIds.indexOf(recipeId);
 
     if (idx >= 0) {
-      selectedIds.splice(idx, 1);
-      delete selectedRecipes[recipeId];
+      // Already selected - increase quantity
+      selectedRecipes[recipeId] = {
+        ...selectedRecipes[recipeId],
+        quantity: (selectedRecipes[recipeId]?.quantity || 1) + 1,
+      };
     } else {
+      // New selection
       selectedIds.push(recipeId);
       selectedRecipes[recipeId] = { quantity: 1, note: '' };
     }
