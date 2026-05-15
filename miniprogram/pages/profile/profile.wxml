@@ -1,9 +1,11 @@
 <view class="page">
   <!-- User Account Info -->
   <view class="account-section">
-    <image class="avatar" src="{{userInfo.avatarUrl || ''}}" mode="aspectFill" />
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{userInfo.avatarUrl || ''}}" mode="aspectFill" />
+    </button>
     <view class="account-info">
-      <view class="nickname">{{userInfo.nickName || '微信用户'}}</view>
+      <input class="nickname-input" type="nickname" placeholder="点击设置昵称" value="{{userInfo.nickName}}" bindblur="onNicknameBlur" />
       <view class="openid">ID: {{userInfo._id}}</view>
     </view>
   </view>

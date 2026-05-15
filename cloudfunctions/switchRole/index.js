@@ -3,7 +3,6 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
 
 const VALID_ROLES = ['husband', 'wife'];
-const ALLOWED_FIELDS = ['role', 'subscribeExpireReminder'];
 
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
@@ -20,6 +19,16 @@ exports.main = async (event, context) => {
 
   if (event.subscribeExpireReminder !== undefined) {
     updateData.subscribeExpireReminder = !!event.subscribeExpireReminder;
+  }
+
+  if (event.nickName !== undefined) {
+    const nickName = String(event.nickName).trim();
+    if (nickName.length > 20) return { error: '昵称不能超过20个字' };
+    if (nickName.length > 0) updateData.nickName = nickName;
+  }
+
+  if (event.avatarUrl !== undefined) {
+    if (event.avatarUrl) updateData.avatarUrl = event.avatarUrl;
   }
 
   if (Object.keys(updateData).length === 0) {

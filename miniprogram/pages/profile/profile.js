@@ -75,6 +75,34 @@ Page({
     // Prevent modal from closing when input is focused
   },
 
+  async onChooseAvatar(e) {
+    const avatarUrl = e.detail.avatarUrl;
+    if (!avatarUrl) return;
+    const result = await wx.cloud.callFunction({
+      name: 'switchRole',
+      data: { avatarUrl },
+    });
+    if (result.result && result.result.error) {
+      wx.showToast({ title: result.result.error, icon: 'none' });
+      return;
+    }
+    this.setData({ 'userInfo.avatarUrl': avatarUrl });
+  },
+
+  async onNicknameBlur(e) {
+    const nickName = e.detail.value;
+    if (!nickName || nickName === this.data.userInfo.nickName) return;
+    const result = await wx.cloud.callFunction({
+      name: 'switchRole',
+      data: { nickName },
+    });
+    if (result.result && result.result.error) {
+      wx.showToast({ title: result.result.error, icon: 'none' });
+      return;
+    }
+    this.setData({ 'userInfo.nickName': nickName });
+  },
+
   onCopyInviteCode() {
     wx.setClipboardData({
       data: this.data.inviteCode,
