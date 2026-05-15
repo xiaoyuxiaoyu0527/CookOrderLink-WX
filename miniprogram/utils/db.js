@@ -24,7 +24,10 @@ async function getCurrentUser() {
 
 async function getFamilyRecipes(familyId) {
   const res = await getCollection(COLLECTIONS.RECIPES)
-    .where({ familyId })
+    .where(_.or([
+      { familyId },
+      { familyId: '' },
+    ]))
     .orderBy('createdAt', 'desc')
     .get();
   return res.data;

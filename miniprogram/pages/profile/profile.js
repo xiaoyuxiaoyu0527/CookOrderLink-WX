@@ -137,18 +137,6 @@ Page({
     }
   },
 
-  async onSeedRecipes() {
-    if (!this.data.hasFamily) {
-      wx.showToast({ title: '请先创建家庭组', icon: 'none' });
-      return;
-    }
-    wx.showLoading({ title: '添加菜谱...' });
-    const { seedRecipes } = require('../../utils/seed-recipes');
-    await seedRecipes(this.data.familyId, this.data.userInfo._id);
-    wx.hideLoading();
-    wx.showToast({ title: '已添加菜谱', icon: 'success' });
-  },
-
   onAddRecipe() {
     wx.navigateTo({ url: '/pages/recipe/add' });
   },

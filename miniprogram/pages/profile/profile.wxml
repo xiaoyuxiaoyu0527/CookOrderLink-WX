@@ -39,7 +39,6 @@
       <switch checked="{{userInfo.subscribeExpireReminder}}" bindchange="onToggleReminder" color="#0066cc" />
     </view>
 
-    <button class="btn-secondary" bindtap="onSeedRecipes">添加示例菜谱</button>
     <button class="btn-secondary" bindtap="onAddRecipe">添加新菜谱</button>
 
     <button class="btn-danger" bindtap="onLeaveFamily">退出当前家庭</button>
