@@ -1,5 +1,4 @@
-const { getCurrentUser, getFamilyRecipes, getFamilyInventory } = require('../../utils/db');
-const { checkRecipeAvailability } = require('../../utils/inventory');
+const { getCurrentUser, getFamilyRecipes } = require('../../utils/db');
 
 Page({
   data: {
@@ -31,17 +30,8 @@ Page({
 
   async loadData() {
     if (!this.user || !this.user.familyId) return;
-    const [recipes, inventory] = await Promise.all([
-      getFamilyRecipes(this.user.familyId),
-      getFamilyInventory(this.user.familyId),
-    ]);
-
-    const enriched = recipes.map(recipe => {
-      const { available, missing } = checkRecipeAvailability(recipe, inventory);
-      return { ...recipe, available, missingIngredients: missing };
-    });
-
-    this.setData({ recipes: enriched });
+    const recipes = await getFamilyRecipes(this.user.familyId);
+    this.setData({ recipes });
   },
 
   onToggleRecipe(e) {
@@ -89,7 +79,6 @@ Page({
       return {
         recipeId: id,
         name: recipe.name,
-        quantity: 1,
         note: this.data.selectedRecipes[id]?.note || '',
       };
     });
@@ -106,13 +95,7 @@ Page({
       return;
     }
 
-    // Request subscribe message authorization for order notifications
-    wx.requestSubscribeMessage({
-      tmplIds: ['zIoRVqR89IsQSbh2D27EtprZ8TUd-q_tDXY7gbD03r4'],
-      complete: () => {
-        wx.showToast({ title: '点菜成功', icon: 'success' });
-        this.setData({ selectedIds: [], selectedRecipes: {}, totalCount: 0, totalMinutes: 0 });
-      },
-    });
+    wx.showToast({ title: '点菜成功', icon: 'success' });
+    this.setData({ selectedIds: [], selectedRecipes: {}, totalCount: 0, totalMinutes: 0 });
   },
 });
