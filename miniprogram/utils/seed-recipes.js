@@ -572,20 +572,12 @@ const SEED_RECIPES = [
 ];
 
 async function seedRecipes(familyId, openid) {
-  for (const recipe of SEED_RECIPES) {
-    await wx.cloud.callFunction({
-      name: 'createRecipe',
-      data: {
-        name: recipe.name,
-        description: recipe.description,
-        category: recipe.category,
-        difficulty: recipe.difficulty,
-        estimatedMinutes: recipe.estimatedMinutes,
-        ingredients: recipe.ingredients,
-        steps: recipe.steps,
-        tutorials: recipe.tutorials,
-      },
-    });
+  const result = await wx.cloud.callFunction({
+    name: 'seedRecipes',
+    data: { recipes: SEED_RECIPES },
+  });
+  if (result.result && result.result.error) {
+    throw new Error(result.result.error);
   }
 }
 
