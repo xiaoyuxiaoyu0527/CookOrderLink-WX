@@ -572,13 +572,35 @@ const SEED_RECIPES = [
 ];
 
 async function seedRecipes(familyId, openid) {
-  const result = await wx.cloud.callFunction({
-    name: 'seedRecipes',
-    data: { recipes: SEED_RECIPES },
-  });
-  if (result.result && result.result.error) {
-    throw new Error(result.result.error);
+  let successCount = 0;
+  for (let i = 0; i < SEED_RECIPES.length; i++) {
+    const recipe = SEED_RECIPES[i];
+    try {
+      const result = await wx.cloud.callFunction({
+        name: 'createRecipe',
+        data: {
+          name: recipe.name,
+          description: recipe.description,
+          category: recipe.category,
+          difficulty: recipe.difficulty,
+          estimatedMinutes: recipe.estimatedMinutes,
+          ingredients: recipe.ingredients,
+          steps: recipe.steps,
+          tutorials: recipe.tutorials,
+        },
+      });
+      if (!result.result || !result.result.error) {
+        successCount++;
+      }
+    } catch (err) {
+      console.error('Seed recipe failed:', recipe.name, err);
+    }
+    // 每5个暂停一下避免超时
+    if (i > 0 && i % 5 === 0) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
   }
+  return successCount;
 }
 
 module.exports = { SEED_RECIPES, seedRecipes };
