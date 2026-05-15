@@ -33,8 +33,10 @@
       </view>
       <scroll-view class="cart-panel-list" scroll-y>
         <view wx:for="{{cartItems}}" wx:key="recipeId" class="cart-panel-item">
-          <text class="cart-panel-item-name">{{item.name}}</text>
-          <view class="cart-panel-item-qty">
+          <view class="cart-panel-item-left">
+            <text class="cart-panel-item-name">{{item.name}}</text>
+          </view>
+          <view class="cart-panel-item-right">
             <view class="qty-btn-circle" bindtap="onCartDecrease" data-id="{{item.recipeId}}">
               <text class="qty-btn-icon">-</text>
             </view>
@@ -47,8 +49,8 @@
       </scroll-view>
     </view>
 
-    <!-- Bottom Action Bar -->
-    <view class="cart-action-bar" bindtap="onToggleCart">
+    <!-- Bottom Action Bar (connected to panel) -->
+    <view class="cart-action-bar" bindtap="onToggleCart" style="{{showCart ? 'border-radius: 0 0 24rpx 24rpx; margin-top: 0;' : ''}}">
       <view class="cart-action-left">
         <view class="cart-icon-wrap">
           <text class="cart-icon">🛒</text>
