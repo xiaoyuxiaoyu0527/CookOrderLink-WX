@@ -104,6 +104,7 @@
   align-items: center;
   padding: 24rpx 0;
   border-bottom: 1rpx solid var(--color-hairline);
+  overflow: hidden;
 }
 
 .cart-panel-item:last-child {
@@ -132,14 +133,15 @@
 }
 
 .qty-btn-circle {
-  width: 52rpx;
-  height: 52rpx;
+  width: 44rpx;
+  height: 44rpx;
   border-radius: 50%;
   background: var(--color-canvas-warm);
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1rpx solid var(--color-hairline);
+  flex-shrink: 0;
 }
 
 .qty-btn-circle:active {
