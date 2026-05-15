@@ -1,9 +1,4 @@
 <view class="page">
-  <view wx:if="{{expiringCount > 0}}" class="alert-card" bindtap="onGoInventory">
-    <text class="alert-text">有 {{expiringCount}} 件食材需要关注</text>
-    <text class="alert-link">查看库存 ></text>
-  </view>
-
   <view class="tabs">
     <view wx:for="{{statusTabs}}" wx:key="key"
           class="tab {{activeTab === item.key ? 'active' : ''}}"
@@ -15,15 +10,14 @@
   <view class="order-list">
     <block wx:for="{{filteredOrders}}" wx:key="_id">
       <order-card order="{{item}}" bind:tap="onOrderTap" />
+      <view wx:if="{{item.status === 'pending'}}" class="order-action">
+        <button class="btn-ghost" bindtap="onCompleteOrder" data-id="{{item._id}}">标记完成</button>
+      </view>
     </block>
 
     <view wx:if="{{filteredOrders.length === 0}}" class="empty-state">
-      <text>暂无订单</text>
+      <view class="empty-icon">📋</view>
+      <text class="empty-text">暂无订单</text>
     </view>
-  </view>
-
-  <view class="inventory-entry" bindtap="onGoInventory">
-    <text>库存管理</text>
-    <view wx:if="{{expiringCount > 0}}" class="badge">{{expiringCount}}</view>
   </view>
 </view>

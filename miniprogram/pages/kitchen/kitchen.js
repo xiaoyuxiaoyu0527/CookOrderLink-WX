@@ -1,11 +1,8 @@
-const { getCurrentUser, getFamilyOrders, getFamilyInventory } = require('../../utils/db');
-const { calculateInventoryStatus } = require('../../utils/inventory');
+const { getCurrentUser, getFamilyOrders } = require('../../utils/db');
 
 const STATUS_TABS = [
   { key: 'pending', label: '待做' },
-  { key: 'cooking', label: '做菜中' },
   { key: 'done', label: '已完成' },
-  { key: 'cancelled', label: '已取消' },
 ];
 
 Page({
@@ -14,7 +11,6 @@ Page({
     activeTab: 'pending',
     orders: [],
     filteredOrders: [],
-    expiringCount: 0,
   },
 
   async onLoad() {
@@ -33,7 +29,6 @@ Page({
   async onShow() {
     if (!this.user || !this.user.familyId) return;
     await this.loadOrders();
-    await this.checkExpiring();
   },
 
   async loadOrders() {
@@ -42,15 +37,15 @@ Page({
     this.updateFilteredOrders();
   },
 
+  updateFilteredOrders() {
+    const filteredOrders = this.data.orders.filter(o => o.status === this.data.activeTab);
+    this.setData({ filteredOrders });
+  },
+
   onTabTap(e) {
     const activeTab = e.currentTarget.dataset.tab;
     const filteredOrders = this.data.orders.filter(o => o.status === activeTab);
     this.setData({ activeTab, filteredOrders });
-  },
-
-  updateFilteredOrders() {
-    const filteredOrders = this.data.orders.filter(o => o.status === this.data.activeTab);
-    this.setData({ filteredOrders });
   },
 
   onOrderTap(e) {
@@ -66,16 +61,21 @@ Page({
     }
   },
 
-  async checkExpiring() {
-    const inventory = await getFamilyInventory(this.user.familyId);
-    const expiringCount = inventory.filter(i => {
-      const status = calculateInventoryStatus(i);
-      return status === 'expiring' || status === 'expired';
-    }).length;
-    this.setData({ expiringCount });
-  },
-
-  onGoInventory() {
-    wx.navigateTo({ url: '/pages/inventory/list' });
+  async onCompleteOrder(e) {
+    const orderId = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '完成订单',
+      content: '确认已完成所有菜品？',
+      success: async (res) => {
+        if (res.confirm) {
+          await wx.cloud.callFunction({
+            name: 'updateOrderStatus',
+            data: { orderId, status: 'done' },
+          });
+          wx.showToast({ title: '已完成', icon: 'success' });
+          await this.loadOrders();
+        }
+      },
+    });
   },
 });

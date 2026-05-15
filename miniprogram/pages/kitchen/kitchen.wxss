@@ -1,30 +1,51 @@
-.page { background: var(--color-canvas-parchment); min-height: 100vh; padding-bottom: 100rpx; }
-
-.alert-card { background: #fff3e0; padding: 24rpx 48rpx; display: flex; justify-content: space-between; align-items: center; }
-.alert-text { color: var(--color-warning); font: var(--font-caption); }
-.alert-link { color: var(--color-primary); font: var(--font-caption); }
-
-.tabs { display: flex; background: var(--color-canvas); border-bottom: 1rpx solid var(--color-hairline); }
-.tab { flex: 1; text-align: center; padding: 24rpx 0; font: var(--font-caption); color: var(--color-ink-muted-48); }
-.tab.active { color: var(--color-primary); border-bottom: 4rpx solid var(--color-primary); }
-
-.order-list { padding: 24rpx 48rpx; }
-.empty-state { text-align: center; padding: 120rpx 0; color: var(--color-ink-muted-48); font: var(--font-caption); }
-
-.inventory-entry {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.page {
   background: var(--color-canvas);
-  padding: 32rpx 48rpx;
-  text-align: center;
-  font: var(--font-body-strong);
-  color: var(--color-primary);
-  border-top: 1rpx solid var(--color-hairline);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12rpx;
+  min-height: 100vh;
+  padding-bottom: 32rpx;
 }
-.badge { background: var(--color-danger); color: #ffffff; font: var(--font-caption); min-width: 32rpx; height: 32rpx; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+.tabs {
+  display: flex;
+  margin: 0 32rpx;
+  background: var(--color-canvas-warm);
+  border-radius: var(--radius-pill);
+  padding: 6rpx;
+  gap: 4rpx;
+}
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  font: var(--font-caption-medium);
+  color: var(--color-ink-muted);
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+}
+.tab.active {
+  background: var(--color-canvas-card);
+  color: var(--color-primary);
+  box-shadow: 0 2rpx 8rpx rgba(61, 44, 30, 0.08);
+}
+
+.order-list {
+  padding: 24rpx 32rpx;
+}
+
+.order-action {
+  padding: 0 32rpx 16rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 160rpx 48rpx;
+}
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  font: var(--font-body);
+  color: var(--color-ink-muted);
+}
