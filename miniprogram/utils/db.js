@@ -6,7 +6,6 @@ const COLLECTIONS = {
   FAMILIES: 'families',
   RECIPES: 'recipes',
   ORDERS: 'orders',
-  INVENTORY: 'inventory',
 };
 
 function getCollection(name) {
@@ -31,14 +30,6 @@ async function getFamilyRecipes(familyId) {
   return res.data;
 }
 
-async function getFamilyInventory(familyId) {
-  const res = await getCollection(COLLECTIONS.INVENTORY)
-    .where({ familyId })
-    .orderBy('createdAt', 'desc')
-    .get();
-  return res.data;
-}
-
 async function getFamilyOrders(familyId, status) {
   const where = { familyId };
   if (status) where.status = status;
@@ -56,6 +47,5 @@ module.exports = {
   getCollection,
   getCurrentUser,
   getFamilyRecipes,
-  getFamilyInventory,
   getFamilyOrders,
 };
