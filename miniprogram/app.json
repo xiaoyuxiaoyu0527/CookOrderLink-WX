@@ -3,21 +3,20 @@
     "pages/order/order",
     "pages/kitchen/kitchen",
     "pages/recipe/detail",
-    "pages/inventory/list",
-    "pages/inventory/edit",
+    "pages/recipe/add",
     "pages/profile/profile"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#000000",
+    "navigationBarBackgroundColor": "#fdf8f3",
     "navigationBarTitleText": "CookOrderLink",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#ffffff"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fdf8f3"
   },
   "tabBar": {
-    "color": "#7a7a7a",
-    "selectedColor": "#0066cc",
+    "color": "#8b7a6a",
+    "selectedColor": "#e07a3a",
     "backgroundColor": "#ffffff",
-    "borderStyle": "black",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/order/order",
@@ -30,6 +29,12 @@
         "text": "厨房",
         "iconPath": "images/tab-kitchen.png",
         "selectedIconPath": "images/tab-kitchen-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png"
       }
     ]
   },
