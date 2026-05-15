@@ -13,5 +13,6 @@ Component({
         note: e.detail.value,
       });
     },
+    noop() {},
   },
 });

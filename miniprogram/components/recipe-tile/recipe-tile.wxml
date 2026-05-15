@@ -22,7 +22,7 @@
         <text class="meta-text" wx:else>困难</text>
       </view>
     </view>
-    <view wx:if="{{selected}}" class="note-area" catchtap="">
+    <view wx:if="{{selected}}" class="note-area" catchtap="noop">
       <input class="note-input" placeholder="添加备注，如：少放盐" value="{{recipe._note}}" bindinput="onNoteInput" />
     </view>
   </view>

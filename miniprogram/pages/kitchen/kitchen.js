@@ -73,6 +73,7 @@ Page({
             data: { orderId, status: 'done' },
           });
           wx.showToast({ title: '已完成', icon: 'success' });
+          this.setData({ activeTab: 'done' });
           await this.loadOrders();
         }
       },
