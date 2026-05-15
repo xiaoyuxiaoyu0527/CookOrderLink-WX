@@ -1,4 +1,13 @@
 <view class="page">
+  <!-- User Account Info -->
+  <view class="account-section">
+    <image class="avatar" src="{{userInfo.avatarUrl || ''}}" mode="aspectFill" />
+    <view class="account-info">
+      <view class="nickname">{{userInfo.nickName || '微信用户'}}</view>
+      <view class="openid">ID: {{userInfo._id}}</view>
+    </view>
+  </view>
+
   <!-- No Family State -->
   <view wx:if="{{!hasFamily}}" class="setup-container">
     <view class="setup-title">开始使用</view>
@@ -20,6 +29,7 @@
     <view class="card">
       <view class="card-label">我的角色</view>
       <view class="role-text">{{userInfo.role === 'husband' ? '烹饪者' : '点菜者'}}</view>
+      <button class="btn-link" bindtap="onShowRoleModal">切换角色</button>
     </view>
 
     <view class="card card-row">
@@ -28,6 +38,9 @@
     </view>
 
     <button class="btn-secondary" bindtap="onSeedRecipes">添加示例菜谱</button>
+    <button class="btn-secondary" bindtap="onAddRecipe">添加新菜谱</button>
+
+    <button class="btn-danger" bindtap="onLeaveFamily">退出当前家庭</button>
   </view>
 
   <!-- Join Modal -->
@@ -36,6 +49,26 @@
       <view class="modal-title">加入家庭组</view>
       <input class="modal-input" placeholder="请输入6位邀请码" bindinput="onJoinCodeInput" bindfocus="onInputFocus" maxlength="6" />
       <button class="btn-primary" catchtap="onJoinFamily">加入</button>
+    </view>
+  </view>
+
+  <!-- Role Modal -->
+  <view wx:if="{{showRoleModal}}" class="modal-mask" catchtap="onCloseRoleModal">
+    <view class="modal-content" catchtap="noop">
+      <view class="modal-title">选择角色</view>
+      <view class="role-options">
+        <view class="role-option {{userInfo.role === 'husband' ? 'active' : ''}}" bindtap="onSelectRole" data-role="husband">
+          <view class="role-icon">👨‍🍳</view>
+          <view class="role-name">烹饪者</view>
+          <view class="role-desc">负责做饭、管理库存</view>
+        </view>
+        <view class="role-option {{userInfo.role === 'wife' ? 'active' : ''}}" bindtap="onSelectRole" data-role="wife">
+          <view class="role-icon">👩</view>
+          <view class="role-name">点菜者</view>
+          <view class="role-desc">选择想吃的菜品</view>
+        </view>
+      </view>
+      <button class="btn-primary" catchtap="onConfirmRole">确认</button>
     </view>
   </view>
 </view>

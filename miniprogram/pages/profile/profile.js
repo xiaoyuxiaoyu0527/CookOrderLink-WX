@@ -7,7 +7,9 @@ Page({
     inviteCode: '',
     hasFamily: false,
     showJoinModal: false,
+    showRoleModal: false,
     joinCodeInput: '',
+    selectedRole: '',
   },
 
   async onLoad() {
@@ -115,5 +117,60 @@ Page({
     await seedRecipes(this.data.familyId, this.data.userInfo._id);
     wx.hideLoading();
     wx.showToast({ title: '已添加菜谱', icon: 'success' });
+  },
+
+  onAddRecipe() {
+    wx.navigateTo({ url: '/pages/recipe/add' });
+  },
+
+  onShowRoleModal() {
+    this.setData({ showRoleModal: true, selectedRole: this.data.userInfo.role });
+  },
+
+  onCloseRoleModal() {
+    this.setData({ showRoleModal: false });
+  },
+
+  onSelectRole(e) {
+    const role = e.currentTarget.dataset.role;
+    this.setData({ selectedRole: role });
+  },
+
+  async onConfirmRole() {
+    const role = this.data.selectedRole;
+    if (!role) {
+      wx.showToast({ title: '请选择角色', icon: 'none' });
+      return;
+    }
+    await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+      data: { role },
+    });
+    this.setData({
+      'userInfo.role': role,
+      showRoleModal: false,
+    });
+    wx.showToast({ title: '角色已更新', icon: 'success' });
+  },
+
+  onLeaveFamily() {
+    wx.showModal({
+      title: '退出家庭',
+      content: '确定要退出当前家庭组吗？退出后将无法查看家庭数据。',
+      confirmColor: '#ff3b30',
+      success: async (res) => {
+        if (res.confirm) {
+          await getCollection(COLLECTIONS.USERS).doc(this.data.userInfo._id).update({
+            data: { familyId: '' },
+          });
+          this.setData({
+            familyId: '',
+            hasFamily: false,
+            inviteCode: '',
+          });
+          getApp().globalData.familyId = '';
+          wx.showToast({ title: '已退出', icon: 'success' });
+        }
+      },
+    });
   },
 });
