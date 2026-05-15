@@ -44,65 +44,79 @@ exports.main = async (event, context) => {
 
     if (newStatus === 'cooking') {
       updateData.startedAt = db.serverDate();
-      const inventoryRes = await db.collection('inventory')
-        .where({ familyId: user.familyId })
-        .get();
-      const inventory = inventoryRes.data;
 
-      const recipeIds = order.items.map(i => i.recipeId);
-      const recipesRes = await db.collection('recipes')
-        .where({ _id: _.in(recipeIds) })
-        .get();
+      // 检查库存（如果有的话）
+      try {
+        const inventoryRes = await db.collection('inventory')
+          .where({ familyId: user.familyId })
+          .get();
+        const inventory = inventoryRes.data;
 
-      for (const recipe of recipesRes.data) {
-        if (!recipe.ingredients) continue;
-        for (const ingredient of recipe.ingredients) {
-          const invItem = inventory.find(i => i._id === ingredient.inventoryItemId);
-          if (!invItem) return { error: `缺少食材：${ingredient.name}` };
-          const status = calculateInventoryStatus(invItem);
-          if (status === 'expired' || status === 'out_of_stock') {
-            return { error: `食材不可用：${ingredient.name}` };
-          }
-          if (invItem.quantity < ingredient.amount) {
-            return { error: `库存不足：${ingredient.name}` };
+        if (inventory.length > 0) {
+          const recipeIds = order.items.map(i => i.recipeId);
+          const recipesRes = await db.collection('recipes')
+            .where({ _id: _.in(recipeIds) })
+            .get();
+
+          for (const recipe of recipesRes.data) {
+            if (!recipe.ingredients) continue;
+            for (const ingredient of recipe.ingredients) {
+              const invItem = inventory.find(i => i._id === ingredient.inventoryItemId);
+              if (!invItem) continue;
+              const status = calculateInventoryStatus(invItem);
+              if (status === 'expired' || status === 'out_of_stock') {
+                return { error: `食材不可用：${ingredient.name}` };
+              }
+              if (invItem.quantity < ingredient.amount) {
+                return { error: `库存不足：${ingredient.name}` };
+              }
+            }
           }
         }
+      } catch (invErr) {
+        console.warn('Inventory check skipped:', invErr.message);
       }
     }
 
     if (newStatus === 'done') {
       updateData.completedAt = db.serverDate();
-      const inventoryRes = await db.collection('inventory')
-        .where({ familyId: user.familyId })
-        .get();
-      const inventory = inventoryRes.data;
 
-      const recipeIds = order.items.map(i => i.recipeId);
-      const recipesRes = await db.collection('recipes')
-        .where({ _id: _.in(recipeIds) })
-        .get();
+      // 尝试扣减库存（如果库存表有数据的话）
+      try {
+        const inventoryRes = await db.collection('inventory')
+          .where({ familyId: user.familyId })
+          .get();
+        const inventory = inventoryRes.data;
 
-      for (const recipe of recipesRes.data) {
-        if (!recipe.ingredients) continue;
-        for (const ingredient of recipe.ingredients) {
-          const invItem = inventory.find(i => i._id === ingredient.inventoryItemId);
-          if (!invItem) continue;
+        if (inventory.length > 0) {
+          const recipeIds = order.items.map(i => i.recipeId);
+          const recipesRes = await db.collection('recipes')
+            .where({ _id: _.in(recipeIds) })
+            .get();
 
-          const newQuantity = invItem.quantity - ingredient.amount;
-          if (newQuantity < 0) {
-            return { error: `库存不足，无法扣减：${ingredient.name}（需要${ingredient.amount}，库存${invItem.quantity}），请手动调整库存后再完成` };
+          for (const recipe of recipesRes.data) {
+            if (!recipe.ingredients) continue;
+            for (const ingredient of recipe.ingredients) {
+              const invItem = inventory.find(i => i._id === ingredient.inventoryItemId);
+              if (!invItem) continue;
+
+              const newQuantity = invItem.quantity - ingredient.amount;
+              if (newQuantity < 0) {
+                return { error: `库存不足：${ingredient.name}（需要${ingredient.amount}，库存${invItem.quantity}）` };
+              }
+
+              await db.collection('inventory').doc(invItem._id).update({
+                data: {
+                  quantity: newQuantity,
+                  status: newQuantity <= 0 ? 'out_of_stock' : 'normal',
+                  updatedAt: db.serverDate(),
+                },
+              });
+            }
           }
-
-          const invStatus = newQuantity <= 0 ? 'out_of_stock' : 'normal';
-
-          await db.collection('inventory').doc(invItem._id).update({
-            data: {
-              quantity: newQuantity,
-              status: invStatus,
-              updatedAt: db.serverDate(),
-            },
-          });
         }
+      } catch (invErr) {
+        console.warn('Inventory deduction skipped:', invErr.message);
       }
     }
 
