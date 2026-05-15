@@ -38,12 +38,17 @@
       </view>
       <scroll-view class="cart-list" scroll-y>
         <view wx:for="{{cartItems}}" wx:key="recipeId" class="cart-item">
-          <view class="cart-item-info">
-            <text class="cart-item-name">{{item.name}}</text>
-            <text class="cart-item-qty">x{{item.quantity}}</text>
+          <view class="cart-item-left">
+            <view class="cart-item-info">
+              <text class="cart-item-name">{{item.name}}</text>
+              <text wx:if="{{item.note}}" class="cart-item-note">{{item.note}}</text>
+            </view>
           </view>
-          <text wx:if="{{item.note}}" class="cart-item-note">{{item.note}}</text>
-          <view class="cart-item-remove" bindtap="onRemoveItem" data-id="{{item.recipeId}}">移除</view>
+          <view class="cart-item-actions">
+            <view class="cart-qty-btn" bindtap="onCartDecrease" data-id="{{item.recipeId}}">-</view>
+            <text class="cart-qty-value">{{item.quantity}}</text>
+            <view class="cart-qty-btn" bindtap="onCartIncrease" data-id="{{item.recipeId}}">+</view>
+          </view>
         </view>
       </scroll-view>
       <view class="cart-footer">

@@ -119,20 +119,49 @@ Page({
     });
   },
 
-  onRemoveItem(e) {
+  onCartIncrease(e) {
     const id = e.currentTarget.dataset.id;
-    const selectedIds = this.data.selectedIds.filter(i => i !== id);
     const selectedRecipes = { ...this.data.selectedRecipes };
-    delete selectedRecipes[id];
-
-    this.updateTotals(selectedIds, selectedRecipes);
-
-    const cartItems = this.data.cartItems.filter(i => i.recipeId !== id);
-    this.setData({ cartItems });
-
-    if (cartItems.length === 0) {
-      this.setData({ showCart: false });
+    if (selectedRecipes[id]) {
+      selectedRecipes[id].quantity += 1;
+      this.updateTotals(this.data.selectedIds, selectedRecipes);
+      this.refreshCartItems();
     }
+  },
+
+  onCartDecrease(e) {
+    const id = e.currentTarget.dataset.id;
+    const selectedRecipes = { ...this.data.selectedRecipes };
+    if (selectedRecipes[id]) {
+      if (selectedRecipes[id].quantity <= 1) {
+        // Remove item completely
+        const selectedIds = this.data.selectedIds.filter(i => i !== id);
+        delete selectedRecipes[id];
+        this.updateTotals(selectedIds, selectedRecipes);
+        this.refreshCartItems();
+        if (this.data.cartItems.length <= 1) {
+          this.setData({ showCart: false });
+        }
+      } else {
+        selectedRecipes[id].quantity -= 1;
+        this.updateTotals(this.data.selectedIds, selectedRecipes);
+        this.refreshCartItems();
+      }
+    }
+  },
+
+  refreshCartItems() {
+    const cartItems = this.data.selectedIds.map(id => {
+      const recipe = this.data.recipes.find(r => r._id === id);
+      const info = this.data.selectedRecipes[id] || { quantity: 1, note: '' };
+      return {
+        recipeId: id,
+        name: recipe.name,
+        quantity: info.quantity,
+        note: info.note,
+      };
+    });
+    this.setData({ cartItems });
   },
 
   // Submit
